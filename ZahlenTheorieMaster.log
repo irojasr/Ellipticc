@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.8)  14 JAN 2021 10:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.6.8)  2 FEB 2021 11:16
 entering extended mode
-**"C:/Users/DonQuijote/Dropbox/UCR/EMATE/Teoría de Números - V2021/Notas/Zahl
-enTheorieMaster.tex"
+**"D:/Archivum Svpremvm/Docvmentvm/Universitaat/Matemáticas/Teoría dos Númer
+os/Ellipticc/ZahlenTheorieMaster.tex"
 
-("C:/Users/DonQuijote/Dropbox/UCR/EMATE/Teoría de Números - V2021/Notas/Zahle
-nTheorieMaster.tex"
+("D:/Archivum Svpremvm/Docvmentvm/Universitaat/Matemáticas/Teoría dos Número
+s/Ellipticc/ZahlenTheorieMaster.tex"
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\memoir\memoir.cls"
@@ -333,11 +333,9 @@ Package tocvsec2 [2008/07/23] emulated by memoir.
 Package verbatim [2008/07/23] emulated by memoir.
 Package verse [2008/07/23] emulated by memoir.
 )
-(../../../headerVarillyDiff.tex
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\alltt.sty"
+(headerVarillyDiff.tex ("C:\Program Files\MiKTeX 2.9\tex\latex\base\alltt.sty"
 Package: alltt 1997/06/16 v2.0g defines alltt environment
-)
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks22
 \symAMSa=\mathgroup4
@@ -4149,57 +4147,57 @@ mm/m/it/12 f$ \T1/zpltosf/m/n/12 (-20) un po-li-no-mio con co-efi-cien-tes en $
 pltosf/m/n/12 (-20) . La $[]$[]
  []
 
-LaTeX Info: Redefining \. on input line 223.
-LaTeX Info: Redefining \% on input line 223.
+LaTeX Info: Redefining \. on input line 225.
+LaTeX Info: Redefining \% on input line 225.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 [9]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 223.
+(babel)             in language  on input line 225.
  [10
 
 ]
@@ -4289,54 +4287,54 @@ Package babel Info: Redefining spanish shorthand "?
 bibitemlist
 )
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 229.
  [13]
 \tf@toc=\write10
 \openout10 = `ZahlenTheorieMaster.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 227.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 227.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 229.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 229.
  (ZahlenTheorieMaster.aux
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 LaTeX Info: Redefining \. on input line 27.
 LaTeX Info: Redefining \% on input line 27.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 227.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 227.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 229.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 229.
 Package rerunfilecheck Info: File `ZahlenTheorieMaster.out' has not changed.
 (rerunfilecheck)             Checksum: D6513B92E161E6E02297ADD56457D83D;419.
  ) 
 Here is how much of TeX's memory you used:
- 60033 strings out of 493305
- 1275532 string characters out of 3138860
- 1738649 words of memory out of 3000000
+ 60031 strings out of 493305
+ 1275725 string characters out of 3138860
+ 1738595 words of memory out of 3000000
  62338 multiletter control sequences out of 15000+200000
  612147 words of font info for 183 fonts, out of 3000000 for 9000
  1277 hyphenation exceptions out of 8191
- 71i,12n,100p,3360b,2131s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 71i,12n,100p,3368b,2131s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/newtx/ntx-ecth-osf.enc}{C:/Progr
 am Files/MiKTeX 2.9/fonts/enc/dvips/newtx/ntx-ec-tosf.enc} <C:\Users\DonQuijote
 \AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\public\mathabx\dpi600\matha8.pk>{C:/P
@@ -4352,7 +4350,7 @@ es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX
 type1/public/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/public/newpx/zplb.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/
 zplr.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/newpx/zplri.pfb>
-Output written on ZahlenTheorieMaster.pdf (13 pages, 221172 bytes).
+Output written on ZahlenTheorieMaster.pdf (13 pages, 221190 bytes).
 PDF statistics:
  286 PDF objects out of 1000 (max. 8388607)
  63 named destinations out of 1000 (max. 500000)
