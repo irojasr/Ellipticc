@@ -217,7 +217,151 @@ Rápidamente para poder simplificar la notación introducimos los conceptos de v
 \begin{Def}
   Sea $f$ un polinomio con coeficientes en $\bC$ y $P\in V(f)$. La \term{multiplicidad} de $f$ en $P$
 \end{Def}
-ko cums
+
+\chapter{Análisis de Fourier}
+
+\section{Día k| 20210203}
+\subsection{La tranformada de Fourier}
+
+Trabajaremos en $\bR^d$ con $m$ la medida de Lebesgue, las funciones a considerar son $f\:\bR^d\to\bC$ y suponemos que son Borel medibles. De aquí tenemos el espacio
+$$L^p(\bR^d)=\Set{f\:\bR^d\to\bC\ \text{medible},\ \int\limits_{\bR^d}|f(x)|^p\dd x<\infty}$$
+para $p\in[1,\infty[$. En el caso cuando $p=\infty$ tenemos que $\nm{f}_\infty=\esssup(f)$ como el $\inf_{C>0}\set{m(|f|\geq C)=0}$ y definimos $L^\infty$ de manera análoga a $L^p$ como $\set{\nm{f}_\infty>\infty}$. Trabajamos también con el espacio $C_0$... 
+\red{estaba cambiando el word wrap}\par
+Así, $f$ es integrable cuando $f_r$ y $f_i$ lo sean.\par 
+Si $z\in\bC,\ z=x+iy$ definimos el módulo complejo como $|z|=\sqrt{x^2+y^2}$. El módulo complejo cumple algunas propiedades tales como la desigualdad triangular para integrales $\left|\int f\dd x\right|\leq\int|f|\dd x$. Recordemos la identidad de Euler, si $x\in\bR$ entonces $e^{ix}=\cos(x)+i\sin(x)$ y este número tiene módulo 1.
+
+\begin{Def}
+  Sea $f\in L^1(\bR^d)$, definimos su \term{transformada de Fourier} como
+  $$\cF(f)(\xi)=\hat f(\xi)=\int\limits_{\bR^d}f(x)e^{-2\pi i\braket{x}{\xi}}\dd x,\ \xi\in\bR^d.$$
+  Note que $|\hat{f}(\xi)|\leq \nm{f}_1$.
+\end{Def}
+
+\begin{Th}
+  El mapeo $f\mapsto\hat f$ es una aplicación continua entre $L^1$ y $L^\infty$.  Vale que $\nm{\hat f}_\infty\leq\nm{f}_1$. Además si $f\in L^1$ entonces $\hat f$ es una función uniformemente continua.
+\end{Th}
+
+\begin{ptcbp}
+  Note que inmediatamente de la definición tenemos $|\hat{f}(\xi)|\leq\nm{f}_1$ para $\xi\in\bR^d$ lo que implica $\nm{\hat{f}}_\infty\leq\nm{f}_1$.\par
+  Por otro lado considere la cantidad
+  \begin{align*}
+    |\hat{f}(\xi+h)-\hat{f}(\xi)|=\left|\int f(x)e^{-2\pi i\braket{x}{\xi+h}}\dd x-\int f(x)e^{-2\pi i\braket{x}{\xi}}\dd x\right|\\
+  \leq \int|f(x)||e^{-2\pi i\braket{x}{\xi}}||e^{-2\pi i\braket{x}{\xi}}-1|\dd x\\
+  =\int|f(x)||e^{-2\pi i\braket{x}{\xi}}-1|\dd x.
+  \end{align*}
+  La cantidad $|e^{-2\pi i\braket{x}{\xi}}-1|$ tiende a cero conforme $h\to 0$ por lo que aplicando el teorema de convergencia dominada tenemos que $|\hat{f}(\xi+h)-\hat{f}(\xi)|\to 0$ cuando $h\to 0$ independiente de $\xi$. 
+\end{ptcbp}
+
+\begin{Lem}[Riemann-Lebesgue]
+  Si $f\in L^1$, entonces $\hat{f}(\xi)\to 0$ cuando $\nm{\xi}\to\infty$. Es decir, $\hat{f}\in C_0$.
+\end{Lem}
+
+\begin{ptcbp}
+  Sea $R=\bigtimes_{i\in[d]}[a_i,b_i]\subseteq\bR^d$ un rectángulo en $\bR^d$. Si $f=\ind_R$ entonces tenemos que $f=\prod_{i\in[d]}\ind_{[a_i,b_i]}$.\red{aaaa me perdí}\par
+  Vale entonces 
+  $$\hat{\ind}_{[a,b]}(\xi)=\int\limits_a^be^{-2\pi ix\xi}\dd x=\int\limits_a^b(\cos(-2\pi x\xi)+i\sin(-2\pi x\xi))\dd x.$$
+  Esta cantidad resulta ser $\frac{-1}{2\pi i\xi}(e^{-2\pi ib\xi}-e^{-2\pi ia\xi})$ que tiende a cero cuando $|\xi|\to 0$. Así $\hat{\ind}_R(\xi)\to 0$ cuando $\nm{\xi}\to\infty$.\par
+  Para $f\in L^1$ en general, aproximamos con funciones simples cuyas indicadoras son sobre rectángulos.
+\end{ptcbp}
+
+Recuerde que la convolución de funciones en $L^1$ es
+$$f\ast g(x)=\int f(x-y)g(y)\dd y.$$
+La convolución es cerrada en $L^1$, es asociativa y conmutativa.
+
+\begin{Th}
+  Tome $f\in L^p, g\in L^1$ para $p\in [1,\infty]$. Entonces $f\ast g\in L^p$ y $\nm{f\ast g}_p\leq\nm{f}_p\nm{g}_1$.
+\end{Th}
+
+De este resultado extraemos que la convolución hereda las propiedades más bonitas de sus operandos. 
+
+\begin{ptcbp}
+  Por Minkowski tenemos 
+  $$\left(\right)$$
+  \red{finish}
+\end{ptcbp}
+
+\begin{Prop}
+  Para $f,g\in L^1$ vale que:
+  \begin{enumerate}
+    \item $\cF(f\ast g)=\cF(f)\cF(g)$.
+    \item $\cF(\tau_h f)(\xi)=e^{2\pi i\braket{h}{\xi}}\cF(f)(\xi)$. Es decir, traslación se convierte en modulación.
+    \item Si $A\in O(d)$, el grupo ortogonal en $d$ dimensiones, entonces
+    $$\cF(f(A\.))(\xi)=\cF(f(A\xi)).$$
+    \item Si $f_\la(x)=\frac{1}{\la^d}\left(\frac{x}{\la}\right)$ entonces $\cF(f_\la)(\xi)=\cF(f)(\la\xi)$.
+    \item $\cF\left(\pdv{f}{x_j}\right)(\xi)=2\pi i\xi_j\cF(f)(\xi)$, cuando $f_j\in L^1$. Y para el otro lado, $\cF(-2\pi ix_j f)(\xi)=\cF\left(\pdv{f}{\xi_j}\right)(\xi)$ cuando $x_jf\in L^1$.
+  \end{enumerate}
+\end{Prop}
+
+Note que a partir del último punto, podemos iterar con derivadas de orden superior cuando todo esté bien definido. Vale por ejemplo que
+$$\cF\left(\pdv[2]{f}{x_j}{x_k}\right)(\xi)=(2\pi i\xi_j)(2\pi i\xi_k)\cF(f)(\xi).$$
+Naturalmente nos preguntamos, 
+\begin{significant}
+  ¿Se puede recuperar $f$ por medio de $\cF(f)$?
+\end{significant}
+Cuando se trabaja con series de Fourier, se puede recuperar $f$ por medio de sus coeficientes de Fourier. Lo esperado es que $f(x)=\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}\dd\xi$. Pero $\hat{f}$ no necesariamente es integrable.
+
+\subsection{La clase de Schwartz}
+
+Indistintamente hablaremos de la derivada parcial de $f$ respecto a $x_j$ como $\del_j f$ o $D_j f$. La $m$-ésima derivada será en su lugar $\del_j^m f$ o $D_j^m f$. Introducimos brevemente la notación multi-índice, si $\al\in\bN^d$ entonces
+$$D^\al f=D_1^{\al_1}\.\dots\.D_d^{\al_d}f.$$
+Por ejemplo $D^{(3,1,4)}f=\frac{\del^8f}{\del x_1^3\del x_2\del x_3^4}$. También tenemos $\al!=\prod\al_j!$ y $x^\al=\prod x_j^{\al_j}$.
+
+\begin{Def}
+  Una función $f$ está en la \term{clase de Schwartz} $\cS(\bR^d)$ si es infinitamente diferenciable y todas sus derivadas decrecen rápidamente a infinito. Es decir para $\al,\bt$ multi-índices vale
+  $$\sup_{\bR^d}|x^\al D^\bt f(x)|=\rho_{\al,\bt}(f)<\infty.$$
+\end{Def}
+
+Inmediatamente de la definición $\Coo_c\subseteq\cS$, también $\rho_{\al,\bt}$ es una seminorma lo que nos puede llevar a una topología. El conjunto $\set{\rho_{\al,\bt}}$ es una familia contable. Entonces $(f_n)\to 0$ en $\cS$ cuando $\rho_{\al,\bt}(f_n)\to 0$ para $\al,\bt$ son cualquier multi-índice. Podemos ver que $\cS$ es un espacio de Fréchet, la métrica que se puede definir es
+$$d(f,g)=\sum_{j\in\bN}\frac{\rho_j(f-g)}{2^j(1+\rho_j(f-g))},$$
+donde $(\rho_j)$ es una enumeración de las seminormas.
+
+\begin{Th}
+  Ocurre que $\cS$ es denso en $L^p$ para $p\in[1,\infty[$.
+\end{Th}
+
+Note que si valiese que $\cS\subseteq L^p$ entonces, como $\Coo_c\subseteq\cS$ y $\Coo_c$ es denso ya entonces estaríamos listos. Basta probar que el espacio de Schwartz está en $L^p$.
+
+\begin{ptcbp}
+  Tome $f\in\cS$, entonces 
+  \begin{align*}
+    \int|f|^p\dd x&=\int(1+|x|^{d+1})\frac{|f|}{1+|x|^{d+1}}\\
+    &\leq \int\frac{c(|f|+\sum_{j\in[d]}|x_j|^{2d+2}|f|)^p}{(1+|x|^{d+1})^p}\dd x\\
+    &\leq \int\frac{c(\rho_{0,0}f+\sum_{j\in[d]}\rho_{(2d+2)e_j,0}f)^p}{(1+|x|^{d+1})^p}\dd x\\
+    &\leq c_2\int\frac{\dd x}{(1+|x|^{d+1})^p}<\infty
+  \end{align*} 
+  \red{no terminé}
+\end{ptcbp}
+
+En particular, el espacio de Schwartz está contenido en $L^1$ y por tanto podemos definir la transformada de Fourier en $\cS$.
+
+\begin{Th}
+  El mapeo $f\mapsto\hat f$ es continuo sobre $\cS$ y cumple:
+  \begin{enumerate}
+    \item $\int f\hat g=\int\hat fg$.
+    \item Vale la fórmula de inversión
+     $$f(x)=\int\hat f(\xi)e^{2\pi i\braket{x}{\xi}}\dd\xi.$$
+  \end{enumerate}
+\end{Th}
+
+Precisamos un par de lemas antes de probar este resultado. Note que la fórmula de inversión tiene \emph{casi} las misma forma que la fórmula que la transformada ordinaria. En cierto sentido $f(x)=\hat{\hat f}(-x)$.
+
+\begin{Lem}
+Si $f(x)=e^{-\pi\nm{x}^2}$, entonces $\hat{f}=f$. 
+\end{Lem}
+
+\begin{ptcbp}
+  \red{me salté la prueba, DO}
+\end{ptcbp}
+
+Ahora podemos probar el teorema de la fórmula de inversión.
+
+\begin{ptcbp}
+  Tenemos que para $f\in\cS$ y $\al,\bt$ multi-índices vale que 
+  \begin{align*}
+    \xi^\al D^{\bt}\hat{f}(\xi)&=(\prod\xi_j^{\al_j})(D_{\xi_1}^{\bt_1}\dots D_{\xi_d}^{\bt_d})\hat{f}(\xi)\\
+    &=C(\cF((D_{\xi_1}^{\bt_1}\dots D_{\xi_d}^{\bt_d})(\prod_{j\in[d]}x_j^{\bt_j})))\dots
+  \end{align*}
+  $D^\al(x^\bt f)$ es una suma de monomios por derivadas de $f$.
+\end{ptcbp}
 %%%%%%%%%%%% Contents end %%%%%%%%%%%%%%%%
 \ifx\nextra\undefined
 \printindex
