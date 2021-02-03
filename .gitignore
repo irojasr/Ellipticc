@@ -18,3 +18,9 @@
 *.synctex
 
 *.toc
+
+*.fdb_latexmk
+
+*.fls
+
+*.gz
