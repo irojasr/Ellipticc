@@ -3,7 +3,7 @@
 \def\nsemestre {V}
 \def\nterm {Verano}
 \def\nyear {2021}
-\def\nprofesor {Adri\'an Barquero}
+\def\nprofesor {Adri\'an Barquero y Dar\'io Mena}
 \def\nsigla {MA0609}
 \def\nsiglahead {T\'opicos en Teor\'ia de N\'umeros}
 \def\darktheme {}
@@ -362,6 +362,76 @@ Ahora podemos probar el teorema de la fórmula de inversión.
   \end{align*}
   $D^\al(x^\bt f)$ es una suma de monomios por derivadas de $f$.
 \end{ptcbp}
+
+\section{Día k+1| 20210204}
+
+\subsection{La transformada de Fourier en $L^2$}
+\red{anotación sobre el conjugado y extensión a L2.}\par
+
+En $L^2$ por tanto existe una extensión de la transformada de Fourier. Los límites en el enunciado del teorema son consecuencia de la continuidad de la transformada pues lo que tenemos es que $f\ind(B(0,R))\to f$ y $\hat f\ind(B(0,R))\to \hat f$ donde ambas convergen en $L^2$. Esto se conoce como extender el operador por densidad y más adelante veremos cómo extender esto a $L^p$ para $p>2$.
+
+Vimos que en $L^1$ no necesariamente hay inversa de la transformada porque esta no necesariamente es integrable. Tomemos $f\in L^1(\bR^d)$, esperamos que $f(x)=\int\limits_{\bR^d}\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}\dd\xi$ en algún sentido de convergencia. Sin embargo no estamos asumiendo que $\hat{f}$ es integrable, puede que dicha integral ni siquiera tenga sentido. Aún siendo $f$ la indicadora de un intervalo, la integral en cuestión no existe.
+
+\begin{Ex}
+  Si $f=\ind([-a,a])$, entonces $\hat{f}(\xi)=\frac{\sin(\pi a\xi)}{\pi a\xi}$ y esta función no es integrable en el sentido de Lebesgue.
+\end{Ex}
+
+Dado esto, necesitamos aplicar métodos de sumabilidad. 
+
+%\subsection{Sumabilidad de Abel}
+\begin{Def}
+  Sea $\eps>0$, definimos la \term{media de Abel} de $f$ como 
+  $$A_\eps f=\int\limits_{\bR^d}$$
+\end{Def}
+
+\begin{Def}
+  Si definimos $G_\eps f=\int f(x)e^{-\eps\nm{x}^2}\dd x$ para $\eps>0$, entonces decimos que $\int f$ es \term{Gauss sumable} a $\l$ si $\lim_{\eps\to 0}G_\eps f=\l$.
+\end{Def}
+
+Ambos promedios se pueden escribir de la forma
+$$M_{\eps,\Phi}f=M_\eps f=\int\limits_{\bR^d}\Phi(\eps x)f(x)\dd x$$
+con $\Phi\in\cC_0$ y $\Phi(0)=1$.
+
+Entonces la idea es modificar un poco las cosas para obtener cierta convergencia. Para lo que queremos hacer, necesitamos las transformadas de Fourier de $e^{-\eps\nm{x}^2}$ y $e^{-\eps\nm{x}}$. Sabemos que $\cF(e^{-\pi\nm{x}^2})(\xi)=e^{-\pi\nm{\xi}^2}$ por lo que para tener la de $\eps$ basta con hacer una dilatación. Si llamamos $g(x)=e^{-\pi\nm{x}^2}$, entonces $e^{-\eps\nm{x}^2}=g\left(\sqrt{\frac{\eps}{\pi}}x\right)$ y como $\cF(\la^{-d}h(\la^{-1}x))=\hat{h}(\la\xi)$, entonces tendremos que 
+$$\cF(e^{-\eps\nm{x}^2})(\xi)=\red{calc}.$$
+
+\begin{Th}
+  En general, si $a>0$, tenemos que 
+  $$\int\limits_{\bR^d}e^{-\pi a\nm{x}^2}e^{-2\pi i\braket{x}{\xi}}\dd x=a^{-\frac{d}{2}}e^{-\frac{\pi}{a}\nm{\xi}^2}.$$
+  También vale que 
+  $$\int\limits_{\bR^d}e^{-2\pi a\nm{x}}e^{-2\pi i\braket{x}{\xi}}\dd x=c(d)\frac{a}{(a^2+\nm{\xi}^2)^{\frac{d+1}{2}}}$$
+  con $c(d)=\frac{\Ga\left(\frac{d+1}{2}\right)}{\pi^{\frac{d+1}{2}}}$.
+\end{Th}
+
+\begin{ptcbp}
+  \red{Ejercicio}
+\end{ptcbp}
+
+Para simplificarnos los cálculos, llamemos $W=W(\xi,a)=\cF(e^{-4\pi^2a\nm{\.}^2})$ y $P=P(\xi,a)=\cF(e^{-2\pi a\nm{\.}})$. A $W$ lo conocemos como el \term{núcleo de Gauss-Weierstrass} y $P$ como el \term{núcleo de Poisson}.\par 
+Así, queremos probar que las medias de Abel y Gauss de $\int\hat{f}\exp(2\pi i\braket{x}{\xi})\dd\xi$ convergen a $f$ en norma y casi por doquier. Esto nos diría que 
+$$f(x)=\int\limits_{\bR^d}\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}w(\xi)\dd\xi$$
+lo que nos permite recuperar $f$ por medio de su transformada.\par 
+Tomemos $\Phi\in\cC_0\cap L^1$, con $\Phi(0)=1$. Llame $\vf=\hat\Phi$ y $\vf_\la=\la^{-d}\vf(\la^{-1}x)$ para $\la$ positivo. Con esta notación vale que 
+\begin{gather*}
+  \Phi(x)=\exp(-4\pi^2\nm{x}^2)\To\vf_\eps=W(algo),\\
+  \Phi(x)=\exp(-2\pi\nm{x})\To\vf_\eps=P(\xi,\eps).
+\end{gather*}
+ 
+\begin{Th}
+  Si $f,\Phi\in L^1(\bR^d)$ y $\vf=\hat\Phi$, entonces 
+  $$\int\hat{f}(\xi) e^{2\pi i\braket{x}{\xi}}\Phi(\eps\xi)\dd\xi=\int f(x)\vf_\eps(x-\xi)\dd x,\eps>0.$$
+  En particular, $\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}e^{-2\pi \eps\nm{\xi}}\dd\xi=\int f(x)P(x-\xi,\eps)\dd x$.
+\end{Th}
+
+La prueba del teorema se basa en la fórmula $\int f\hat g=\int\hat fg$ a $f$ y a $\Phi(\eps x)e^{2\pi i\braket{x}{\xi}}$. Resta por notar que los núcleos con los que estamos trabajando, ambos integran a uno. La prueba de estos hechos es un \red{ejercicio}.
+
+\begin{Th}
+  Si $\vf\in L^1$ con $\int\vf=1$ y para $\eps>0$ definimos $\vf_\eps(x)=\frac{1}{\eps^d}\vf\left(\frac{x}{\eps}\right)$, entonces si $f\in L^p\cup\cC_0$ para $1\leq p<\infty$, vale que 
+  $$\nm{f\ast\vf_\eps-f}_p\to 0,\quad \eps\to 0.$$
+  En particular $\int f(\xi)P(x-\xi,\eps)\dd\xi$ y $\int f(\xi)W(x-\xi,\eps)\dd\xi$ convergen a $f$ en $L^p$ cuando $\eps\to 0$.
+\end{Th}
+
+
 %%%%%%%%%%%% Contents end %%%%%%%%%%%%%%%%
 \ifx\nextra\undefined
 \printindex
