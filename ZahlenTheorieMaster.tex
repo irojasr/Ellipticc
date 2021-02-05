@@ -47,7 +47,7 @@ En general hay más de una manera en la que uno puede construir el plano proyect
 Por ejemplo un problema que se discute en el Silverman y Tate \cite{SilvermanTate}, al estudiar las soluciones racionales de la ecuación
 $$x^N+y^N=1,$$
 se puede ver que si $x=\frac ac$ y $y=\frac bd$ son soluciones racionales en su forma más reducida ($\mcd(a,c)=\mcd(b,d)=1$, y $c,d>0$) entonces debe ocurrir que $c=d$. Esto se logra después de un breve análisis de divisibilidad. Concluimos que la solución debe tener la forma $x=\frac ac$ y $y=\frac bc$.\par
-Esta solución satisface que $a^N+b^N=c^N$ por lo que la solución $\left(\frac ac,\frac bc\right)$ del problema en términos racionales genera una solución $(a,b,c)$ de la ecuación homogénea $x^N+y^N=z^N$. La clave aquí es que como la ecuación es homogénea, cualquier múltiplo de $(a,b,c)$ va a ser una solución al mismo problema. Pero como estas soluciones se obtienen de manera relativamente trivial, podríamos querer considerarlas como equivalentes. Este tipo de razonamiento lleva a la definición algebraica del plano proyectivo.
+Esta solución satisface que $a^N+b^N=c^N$ por lo que la solución $\left(\frac ac,\frac bc\right)$ del problema en términos racionales genera una solución $(a,b,c)$ de la ecuación homogénea $x^N+y^N=z^N$. La clave aquí es que como la ecuación es homogénea, cualquier múltiplo de $(a,b,c)$, $(ta,tb,tc)$ con $t\in\bR$, va a ser una solución al mismo problema. Pero como estas soluciones se obtienen de manera relativamente trivial, podríamos querer considerarlas como equivalentes. Este tipo de razonamiento lleva a la definición algebraica del plano proyectivo.
 
 \begin{Def}
   El \term{plano proyectivo} sobre un cuerpo $K$ es el cociente del conjunto $\set{(a,b,c)\in K^3\less\set{(0,0,0)}}$ por la relación
@@ -64,22 +64,62 @@ Esta solución satisface que $a^N+b^N=c^N$ por lo que la solución $\left(\frac 
 Bueno, volviendo al ejemplo que presentamos, nos gustaría que nuestras soluciones estén en correspondencia. Claramente $(0,0,0)$ resuelve la ecuación homogénea, pero no la que tiene forma racional. Quizás de manera más interesante, $(1,-1,0)$ resuelve la ecuación homogénea con exponente impar. Pero esta no da una solución de la ecuación racional, entonces podríamos pensar por ejemplo que tenemos $((a_j,b_j,c_j))\subseteq\bR^3$ una sucesión de soluciones reales que converge a $(1,-1,0)$ y $c_j>0$. Esta sucesión si genera soluciones $\left(\frac{a_j}{c_j},\frac{b_j}{c_j}\right)$ de la ecuación racional y cuando $j\to\infty$ entonces este par ordenado tiende a $(\infty,-\infty)$. Podemos entonces pensar que las tripletas con tercera coordenada nula corresponden con soluciones que se encuentran en el infinito. Esta clase de puntos en el infinito es fundamental y lo estudiaremos más adelante.
 
 \begin{Def}
-  El espacio proyectivo en $n$ dimensiones sobre un cuerpo $K$ es el conjunto
-  $$\bP^n_K=\quot{x\in K^{n+1}\less\set{0}}{\sim}$$
-  donde la equivalencia es $x\sim x'\iff \exists t\in K^\x(x=tx')$. De igual manera denotamos la clase de $x$ como $[x]$. Las coordenadas de $[x]$ igualmente se llamarán coordenadas homogéneas.
+  El \term{espacio proyectivo} en $n$ dimensiones sobre un cuerpo $K$ es el conjunto
+  $$\bP^n_K=\quot{\set{x\in K^{n+1}\less\set{0}}}{\sim}$$
+  donde la equivalencia es $x\sim x'\iff \exists t\in K^\x(x=tx')$. De igual manera denotamos la clase de $x$ como $[x]$. Las coordenadas de $[x]$ igualmente se llamarán \term{coordenadas homogéneas}.
 \end{Def}
 
-Más adelante vamos a definir curvas en el espacio proyectivo. En este momento vamos a definir lo que entenderemos como una recta en el plano proyectivo.
+Más adelante vamos a definir curvas en el espacio proyectivo. En este momento vamos a definir lo que entenderemos como una recta en el plano proyectivo. En principio verificar que un punto proyectivo $[a,b,c]$ está en una recta proyectiva consiste en ver que cualquier elemento de la clase de equivalencia satisface la ecuación mencionada.
 
-\begin{Def}
+\begin{Def}[Recta en el plano proyectivo]
   Una recta en el plano proyectivo $\bP^2_K$ es el conjunto de puntos $[a,b,c]$ cuyas coordenadas satisfacen una ecuación de la forma
   $$\al X+\bt Y+\ga Z=0,$$
   donde $\al,\bt,\ga\in K$ no son todos nulos.
 \end{Def}
 
+En en el plano usual, una recta es el conjunto de puntos que satisface una ecuación $\al x+\bt y+\ga=0$. En el caso proyectivo, la definición de recta que obtuvimos es básicamente lo que obtendríamos de esta ecuación al hacerla homogénea.
+
 \subsubsection{Una visión geométrica}
 
-Sabemos que en $\bR^2$ vale que dos puntos determinan una única recta y similarmente dos rectas se intersecan en un único punto salvo cuando son paralelas.
+Sabemos que en $\bR^2$ vale que dos puntos determinan una única recta y similarmente dos rectas se intersecan en un único punto salvo cuando son paralelas. Entonces buscamos extender el concepto de obtener una noción más completa, ¡quisiéramos poder decir que cualesquiera dos rectas se intersecan en un punto!\par 
+La idea va a ser asociar a cada recta en el plano una \emph{dirección}. Al hacer esto, estaríamos agregándole un poco más de \emph{información} a una recta. Entonces una recta va a ser el conjunto de puntos \emph{y una dirección}. Para nosotros, dos rectas paralelas tendrán la misma dirección y como decimos ahora que la dirección es parte de la recta, las paralelas \emph{coinciden en la intersección}.\par 
+Extendemos el concepto de recta agregando ``la dirección'' como un punto. Si trabajamos sobre $\bR$, habrá que agregar un número infinito de puntos. Porque si agregamos sólo un punto en el infinito como dirección entonces dos pares de rectas paralelas se intersecan en el mismo punto. En particular dos rectas distintas se intersecarían en dos puntos y eso contradice el hecho de que dos rectas distintas se intersecan en un único punto. Esto nos lleva a una idea geométrica para definir el plano proyectivo. 
+
+\begin{Def}[Plano afín sobre $K$]
+  Sea $K$ un cuerpo, el \term{plano afín} sobre $K$ es el conjunto $\bA^2_K=\set{(x,y)\in K^2}$. 
+\end{Def}
+
+\begin{Def}[Espacio afín n-dimensional]
+  El \term{espacio afín} sobre un cuerpo $K$ es el conjunto $\bA^n_K=\set{(x_1,x_2,\dots,x_n)\in K^n}$. 
+\end{Def}
+
+Observe ahora la diferencia aquí con el plano proyectivo, se necesitaban tres coordenadas. Aquí en el plano afín necesitamos sólo dos. Análogamente en el espacio proyectivo de $n$ dimensiones, necesitamos $n+1$ coordenadas, mientras que en el $n$-espacio afín usamos $n$ coordenadas.
+
+\begin{Def}[Plano proyectivo sobre K (geometricamente)]
+  El \term{plano proyectivo} se define como el conjunto 
+  $$\bP_K^2=\bA_K^2\cup\set{\text{direcciones en }\bA_K^2}.$$
+  Consideramos que dos rectas en $\bA_K^2$ tienen la misma dirección cuando son paralelas.
+\end{Def}
+
+Por tanto una dirección se puede considerar como una clase de equivalencia de rectas. Definimos una equivalencia en el conjunto de las rectas en $\bA_K^2$ al considerar dos rectas como equivalentes cuando son paralelas. Así las direcciones en $\bA^2_K$ son las clases de equivalencia de rectas paralelas.\par 
+Entonces los puntos de $\bP_K^2$ correspondientes a las direcciones, los llamamos ``puntos en el infinito''. Al conjunto de puntos en el infinito de hecho lo consideramos una recta en $\bP_K^2$, se le llama \term{recta en el infinito}. 
+\begin{Ex}
+  La noción de punto en el infinito se puede asociar con la idea de ver un par de lineas de tren. Desde un punto de vista, cuando se ve en la dirección de las lineas en una situación adecuada, pareciera que en el horizonte las lineas se tocan.\par 
+  \red{TO DO: Agregar imagen vectorizada de lineas de tren tocándose.}
+\end{Ex}
+
+Bajo esta versión geométrica, una recta en $\bP_K^2$ se define de una manera distinta.
+
+\begin{Def} [Recta proyectiva (geometricamente)]
+  Una recta en $\bP_K^2$ es la unión de puntos de una recta en $\bA_K^2$ con su correspondiente dirección.
+\end{Def}
+
+De acuerdo con esta definición, dos rectas en el plano proyectivo sí se intersecan en un \emph{único punto}. Si dos rectas no son paralelas se intersecan en únicamente un punto del plano afín y sus direcciones son distintas.  Entonces el punto en el infinito que agregamos a ambas rectas no coincide. En el caso que las rectas sean paralelas, no se intersecan en ningún punto del plano afín. Pero pertenecen a la misma clase de equivalencia y por tanto tienen el mismo punto en el infinito asociado. El último caso es el de la recta en el infinito que interseca a todas las rectas pues todas llevan una dirección asociada.\par 
+Para reconciliar las definiciones establecemos la equivalencia entre ellas. Redefinimos el conjunto de direcciones que originalmente lo consideramos como un conjunto de clases de equivalencia. Basta considerar sólo aquellas rectas que pasan por el origen, de la cual sólo hay una por cada clase de equivalencia. Vamos a usar estas rectas para describir el conjunto de direcciones a manera de ``representantes canónicos''.\par 
+Las rectas que pasan por el origen tienen la forma $Ay=Bx$ donde $A,B$ no son ambos cero. Ciertamente $(A,B)$ y $(A',B')$ definen la misma recta cuando existe $t\in K^\x$ tal que $A=tA'$ y $B=tB'$. Aquellos con mente sagaz habrán reconocido esta idea como una que hicimos recién. El conjunto de direcciones en $\bA_K^2$ se puede describir como el conjunto de puntos $[A,B]\in\bP_K^1$ donde 
+$$[A,B]=\set{(tA,tB)\in K^2\less\set{(0,0)},\ t\in K^\x}.$$
+Concluimos que $\bP_K^2=\bA_K^2\cup\bP_K^1$ donde $[A,B]$ corresponde con la dirección de la recta $Ay=Bx$. De manera totalmente análoga se puede ver que $\bP_K^n=\bA_K^n\cup\bP_K^{n-1}$.
+
 
 \section{Día n+1| 20210113}
 
