@@ -457,21 +457,85 @@ Tomemos $\Phi\in\cC_0\cap L^1$, con $\Phi(0)=1$. Llame $\vf=\hat\Phi$ y $\vf_\la
   \Phi(x)=\exp(-2\pi\nm{x})\To\vf_\eps=P(\xi,\eps).
 \end{gather*}
  
-\begin{Th}
+\begin{Th}\label{thm:tmaPendPara0208}
   Si $f,\Phi\in L^1(\bR^d)$ y $\vf=\hat\Phi$, entonces 
-  $$\int\hat{f}(\xi) e^{2\pi i\braket{x}{\xi}}\Phi(\eps\xi)\dd\xi=\int f(x)\vf_\eps(x-\xi)\dd x,\eps>0.$$
+  $$\int\hat{f}(\xi) e^{2\pi i\braket{x}{\xi}}\Phi(\eps\xi)\dd\xi=\int f(x)\vf_\eps(x-\xi)\dd x,\ \eps>0.$$
   En particular, $\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}e^{-2\pi \eps\nm{\xi}}\dd\xi=\int f(x)P(x-\xi,\eps)\dd x$.
 \end{Th}
 
 La prueba del teorema se basa en la fórmula $\int f\hat g=\int\hat fg$ a $f$ y a $\Phi(\eps x)e^{2\pi i\braket{x}{\xi}}$. Resta por notar que los núcleos con los que estamos trabajando, ambos integran a uno. La prueba de estos hechos es un \red{ejercicio}.
 
-\begin{Th}
+\begin{Th}\label{thm:segundoTmaPendPara0208}
   Si $\vf\in L^1$ con $\int\vf=1$ y para $\eps>0$ definimos $\vf_\eps(x)=\frac{1}{\eps^d}\vf\left(\frac{x}{\eps}\right)$, entonces si $f\in L^p\cup\cC_0$ para $1\leq p<\infty$, vale que 
   $$\nm{f\ast\vf_\eps-f}_p\to 0,\quad \eps\to 0.$$
-  En particular $\int f(\xi)P(x-\xi,\eps)\dd\xi$ y $\int f(\xi)W(x-\xi,\eps)\dd\xi$ convergen a $f$ en $L^p$ cuando $\eps\to 0$.
+  Por otro lado, cuando $f$ sólo está en $\cC_0$, la convergencia es en norma de $L^\infty$. En particular $\int f(\xi)P(x-\xi,\eps)\dd\xi$ y $\int f(\xi)W(x-\xi,\eps)\dd\xi$ convergen a $f$ en $L^p$ cuando $\eps\to 0$.
 \end{Th}
 
+\section{Día k+2| 20210208}
 
+\subsection{Un breve resumen}
+
+Teníamos una función $\Phi\in L^1$, con $\hat\Phi=\vf$ y $\vf_\eps(x)=\eps^{-d}\vf(\eps^{-1}x)$. El efecto del $\eps$ en el argumento es dilatar un poco el dominio mientras que el exterior dilata el rango, más su uso es normalizar el determinante del Jacobiano en $\bR^d$.\par 
+En el contexto del teorema \ref{thm:tmaPendPara0208}, la integral 
+$$\int\hat{f}(\xi) e^{2\pi i\braket{x}{\xi}}\Phi(\eps\xi)\dd\xi$$
+se conoce como la $\Phi$-media ó $\Phi$-promedio de $\int\hat{f}(\xi) e^{2\pi i\braket{x}{\xi}}\dd\xi$. Lo que quisiéramos es que el término $f\ast\vf_\eps$, al que la $\Phi$-media es igual, sea convergente a $f$ en algún sentido. Porque así tendremos que las medias de la integral convergen lo que nos dará convergencia de la transformada en algún sentido.
+
+\begin{Ex}
+  Nosotros teníamos varios ejemplos de estas funciones.
+  \begin{gather*}
+    \Phi(x)=e^{-2\pi\nm{x}},\ \vf(\xi)=\frac{c_d}{(1+\nm{\xi}^2)^{\frac{d+1}{2}}},\ \Phi(\eps x)=e^{-2\pi\eps\nm{x}},\ \vf_\eps(\xi)=\frac{\eps c_d}{(\eps^2+\nm{\xi}^2)^{\frac{d+1}{2}}},\\
+    \Phi^g(x)=e^{-\pi\nm{x}^2},\ \vf^g(\xi)=e^{-\pi\nm{\xi}^2},\ \Phi^g(\eps x)=e^{-\pi\eps^2\nm{x}^2},\ \vf^g_\eps(\xi)=\eps^{-d}e^{-\pi\eps^{-2}\nm{\xi}^2}.
+  \end{gather*}
+  A la función $P(\xi,\eps)=\vf_\eps(\xi)$, se le conoce como el \term{núcleo de Poisson} y es la transformada de Fourier de $\Phi(\eps x)$. Mientras que $$W(\xi,\eps)=(4\pi\eps)^{-\frac d2}e^{-\frac{\nm{\xi}^2}{4\eps}}=\vf_{2\sqrt{\pi\eps}}^g(\xi)$$
+  es una dilatación de $\vf_g$ y la transformada de $\Phi^g(2\sqrt{\pi\eps}x)=e^{-4\pi^2\eps\nm{x}^2}$. A esta función se le conoce como el \term{núcleo de Gauss-Weierstrass}.
+\end{Ex}
+
+Con estos dos núcleos podemos aplicar el teorema \ref{thm:tmaPendPara0208}. Nada más recordamos un lema antes de proseguir. 
+
+\begin{Lem}
+  Vale que $\int W(\xi,\eps)\dd\xi=\int P(\xi,\eps)\dd\xi=1$ para $\eps>0$.
+\end{Lem}
+
+La integral del núcleo de Poisson requiere de cambios a coordenadas polares mientras que el de Poisson sí requiere integración compleja o técnicas que veremos más adelante. Probamos ahora el teorema \ref{thm:segundoTmaPendPara0208}.
+
+%%IMportante https://tex.stackexchange.com/questions/6195
+\begin{ptcbp}
+  Lo primero es notar que 
+  $$\int\vf_\eps(x)\dd x=\int\frac{1}{\eps^d}\vf\left(\frac{x}{\eps}\right)\dd x\stackrel{y=\frac{x}{\eps}}{=}\int\vf(y)\dd y=1.$$
+  Y con esta observación vemos que 
+  $$f\ast\vf_\eps-f=\int f(x-y)\vf_\eps(y)\dd y-f(x)\int\vf_\eps(y)\dd y=\int(f(x-y)-f(x))\vf_\eps(y)\dd y,$$
+  donde buscamos estimar la norma $L^p$ de la última cantidad. Estamos ante una situación favorable pues $\vf_\eps$ está controlado ya que tiene integral 1, y como $f$ es ``bien portada'', la diferencia debería también tener un comportamiento razonable. 
+\end{ptcbp}
+
+
+\section{Ínterin| Tarea}
+
+\begin{Ej}
+  Probar prop 4 (rip, cual era esta)
+  \end{Ej}
+
+\begin{Ej}
+ Muestre que $f\in\cS(\bR^d)$ si y sólo si $f\in\Coo(\bR^d)$ y $|D^\al f(x)|\leq \frac{C(\al,N)}{(1+\nm{x})^N}$ para $\al\in\bN^d$ y $N\in\bN$.
+\end{Ej}
+
+\begin{ptcbp}%Folland 237
+  Suponga que $f$ está en la clase de Schwartz, entonces vale que 
+  $$\sup_{\bR^d}|x^\al D^\bt f(x)|<\infty$$
+  para $\al,\bt\in\bN^d$. Note que 
+  \begin{align*}
+    |x^\al|^2&=x_1^{2\al_1}+x_2^{2\al_2}+\dots+x_d^{2\al_d}\\
+    &\leq C(\al,N)
+    &= C(\al,N)(1+\nm x)^N
+  \end{align*}
+\end{ptcbp}
+
+\begin{Ej}
+  Muestre que si $f,g\in\cS(\bR^d)$, entonces $f\ast g\in\cS(\bR^d)$.
+ \end{Ej}
+
+ \begin{ptcbp}%Grafakos 107
+   
+ \end{ptcbp}
 %%%%%%%%%%%% Contents end %%%%%%%%%%%%%%%%
 \ifx\nextra\undefined
 \printindex
