@@ -291,7 +291,7 @@ Si $z\in\bC,\ z=x+iy$ definimos el módulo complejo como $|z|=\sqrt{x^2+y^2}$. E
   La cantidad $|e^{-2\pi i\braket{x}{\xi}}-1|$ tiende a cero conforme $h\to 0$ por lo que aplicando el teorema de convergencia dominada tenemos que $|\hat{f}(\xi+h)-\hat{f}(\xi)|\to 0$ cuando $h\to 0$ independiente de $\xi$. 
 \end{ptcbp}
 
-\begin{Lem}[Riemann-Lebesgue]
+\begin{Lem}[Riemann-Lebesgue]\label{Lem:RiemannLebesgueLemma}
   Si $f\in L^1$, entonces $\hat{f}(\xi)\to 0$ cuando $\nm{\xi}\to\infty$. Es decir, $\hat{f}\in C_0$.
 \end{Lem}
 
@@ -514,13 +514,13 @@ La integral del núcleo de Poisson requiere de cambios a coordenadas polares mie
     \dd y\mapsto \eps^{-d}\dd y}\right)}&=\int\left(\int |f(x-\eps y)-f(x)|^p\dd x\right)^{\frac{1}{p}}|\vf(y)|\dd y.
   \end{align*}
   Esta última expresión ya se ve mejor pues $\vf\in L^1$ y la otra integral se puede acotar por $2\nm{f}_p$. Es decir acotamos por un múltiplo de una función integrable. Si podemos ver que esto converge a cero, podemos aplicar el teorema de convergencia dominada.\par 
-  Si $f$ es continua y de soporte compacto, entonces es fácil ver que $\int |f(x-\eps y)-f(x)|^p\dd x$ tiende a cero. Al integrar sobre un compacto de medida finita obtenemos la cota de $\eps$ por la medida del soporte y por continuidad la diferencia tiende a cero. Luego por densidad en $L^p$\footnote{Una prueba de este hecho genera una función explícita a partir del lema de Urysohn.}, este procedimiento vale para $f\in L^p$.\par 
+  Si $f$ es continua y de soporte compacto, entonces es fácil ver que $\int |f(x-\eps y)-f(x)|^p\dd x$ tiende a cero. Al integrar sobre un compacto de medida finita obtenemos la cota de $\eps$ por la medida del soporte y por continuidad la diferencia tiende a cero. Luego por densidad\footnote{Una prueba de este hecho genera una función explícita a partir del lema de Urysohn.} en $L^p$, este procedimiento vale para $f\in L^p$.\par 
   Concluimos, por el teorema de convergencia dominada, que $\nm{f\ast\vf_\eps-f}_p\to 0$ cuando $\eps\to 0$.
 \end{ptcbp}
 
 Pegamos esto con el teorema \ref{thm:tmaPendPara0208} para ver que la integral $\int\limits_{\bR^d}\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}w(\xi)\dd\xi$ va a converger a $f(x)$ en norma $L^p$. A manera de corolario entonces tenemos:
 
-\begin{Cor}
+\begin{Cor}\label{cor:convLpFTxPhiMean}
 Si $f,\Phi\in L^1$, y $\vf=\hat\Phi\in L^1$ con $\int\vf=1$, entonces
 $$\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}\Phi(\eps\xi)\dd\xi\xrightarrow[]{L^p}f(x),\ \eps\to 0.$$
 \end{Cor}
@@ -552,8 +552,30 @@ Hasta ahora hemos visto que la integral de la transformada de Fourier sólo tien
   $$\lim_{\eps\to0}\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}e^{-4\pi^2\eps\nm{\xi}^2}\dd\xi=\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}\dd\xi$$
   en $L^1$ lo que garantiza convergencia casi por doquier.
 \end{ptcbp}
-%% Cont minuto 41
 
+Recordemos ahora que cuando $f\in L^1$, su transformada es uniformemente continua y si a su vez la transformada está en $L^1$, lo mismo ocurre para $\int\hat f(\xi)e^{2\pi i\braket{x}{\xi}}\dd \xi$. Eso quiere decir que $f(x)$ es igual casi por doquier a una función uniformemente continua. Para efectos de la medida, $f$ es continua. En cuyo caso, la igualdad $f(x)=\int\hat f(\xi)e^{2\pi i\braket{x}{\xi}}\dd \xi$ pasa de ser casi por doquier a siempre. Si no, se puede modificar en un conjunto de medida cero para que sea continua y la igualdad valga para todo $x$. Sin embargo, estamos asumiendo algo bastante fuerte que es que $\hat{f}\in L^1$ y \emph{eso no siempre es el caso}.\par 
+Del resultado anterior se desprende que cuando la transformada es cero, $f$ es cero casi por doquier. También podemos verlo incluso del corolario \ref{cor:convLpFTxPhiMean} anterior, pues $f$ va a ser el límite de cosas que son cero.
+
+\begin{Cor}[Unicidad de la transformada]
+  Si $f,g\in L^1$ y $\hat{f}=\hat{g}$, entonces $f=g$ casi por doquier. 
+\end{Cor}
+
+\begin{ptcbp}
+  Sea $h=f-g$, entonces $\hat{h}=0$. Luego, por el teorema \ref{thm:segundoTmaPendPara0208} vale
+  $$\nm{\int\hat{h}(\xi)e^{2\pi i\braket{x}{\xi}}\Phi(\eps\xi)\dd\xi-h(x)}_1\to0$$
+  y como los términos de la izquierda son cero, se sigue que $\nm{h}_1\to0$. Concluimos que $h=0$ casi por doquier.
+\end{ptcbp}
+
+\subsection{Convergencia puntual}
+
+Hemos hablado de convergencia en norma, pero ahora vamos a hablar de convergencia puntual. Esto porque vamos a eliminar la suposición de que $\hat{f}$ está en $L^1$ y vamos a usar herramientas distintas. Algunas de estas serán el teorema de diferenciación de Lebesgue, la fórmula de coordenadas polares en $\bR^d$ y la desigualdad de Hölder. 
+
+\begin{Th}[Diferenciación de Lebesgue]\label{thm:}
+  Si $f\in L^1_\loc$, entonces
+  $$\frac{1}{m(B_r(0))}\int\limits_{B_r(0)}(f(x-y)-f(x))\dd y\to 0$$
+  conforme $r\to 0$.
+\end{Th}
+%%Min 55
 \section{Día k+3| 20210209}
 \section{Día k+4| 20210210}
 \section{Día k+5| 20210211}
