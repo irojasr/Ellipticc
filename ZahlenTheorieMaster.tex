@@ -558,6 +558,88 @@ Hasta ahora hemos visto que la integral de la transformada de Fourier sólo tien
 \section{Día k+4| 20210210}
 \section{Día k+5| 20210211}
 
+La vez pasada hemos hablado sobre distribuciones de soporte compacto. Recordemos la definición \red{ref y agregar defn sig en día anterior}
+
+\begin{Def}
+  Para $u\in\cD'$, diremos que $\supp(u)$ es la intersección de los cerrados $F$ tales que si $\vf\in\Coo_c$ con $\supp(\vf)\subseteq F^c$, entonces $(\vf,u)=0$. %Vista como par dual
+\end{Def}
+
+También vimos que el dual de $\Coo$, el conjunto $\cE'$ de las distribuciones con soporte compacto sólo era un nombre. Queremos ver que en efecto tienen soporte compacto de acuerdo con esta definición. Teníamos también la caracterización
+
+$$u\in\cD'\iff \forall K\ \text{compacto}\ \exists C>0,\ m\in\bN(|(f,u)|\leq C\sum_{|\al|\leq m}\nm{D^\al f}_\infty)$$
+
+para $f\in\Coo_c$ con $\supp(f)\subseteq K$. Y la caracterización de $\cE'$ resulta ser 
+
+$$u\in\cE'\iff \exists C>0,\ m,N\in\bN(|(f,u)|\leq \sum_{|\al|\leq m}\tilde{\rho_{\al,N}(f)})$$
+
+donde $f\in\Coo$ y $\tilde{\rho}_{\al,N}(f)=\sup_{\nm{x}\leq N}|D^\al f(x)|$. Veremos que una distribución que cumple esta condición también cumple tener soporte compacto de acuerdo a lo anterior.
+
+\begin{ptcbp}
+  Sea $u\in\cE'$ y $\vf\in\Coo$ tal que $\supp(\vf)\subseteq B_N(0)^c$ que es un cerrado. Entonces \red{no entendí bien} $\supp(D^\al f(x))\subseteq B_{N+1}(0)^c$ lo que dice que $D^\al f(x)=0$ para $x\in\ov B_N(0)$ y así $\sup_{\nm{x}\leq N}|D^\al f(x)|=0$.\par 
+  La condición equivalente nos dice que 
+  $$|u(f)|=|(f,u)|\leq\sum_{|\al|\leq m}\sup_{\nm{x}\leq N}|D^\al f(x)|=0.$$
+  Esto implica que la acción de $u$ sobre $f$ es cero, fuera del cerrado $\ov B_N(0)$ la acción de $u$ es cero y por tanto $\supp(u)\subseteq \ov B_N(0)$. Concluimos que $u$ tiene soporte compacto de acuerdo con la definición nueva.\par 
+  Ahora supongamos que $u$ es de soporte compacto de acuerdo a la definición. Debemos probar la propiedad \red{referenciar referenciar}. Sea $\eta\in\Coo$ tal que $\eta=\ind(B_N(0))(1-\ind(B_{N+1}(0)))$ \red{escribir mejor}. Si consideramos $h(1-\eta)$ para $h\in\Coo_c$, entonces $h(1-\eta)$ tiene soporte disjunto con $u$ lo que nos dice que
+  $$(h,u)=(h\eta,u)+(h(1-\eta),u)=(h\eta,u).$$
+  Si bien para una función $\Coo$ $u$ no puede actuar, por medio de la igualdad descrita podemos definir la acción. Si $f\in\Coo$, entonces $(f,u)=(f\eta, u)$ y así $u$ es un funcional lineal que actúa en $\Coo$. Por la caracterización de las distribuciones en $\cD'$ vale que 
+  $$|(f\eta,u)|\leq\sum_{|\al|\leq m}\nm{D^\al(f\eta)}_{\infty},$$
+  donde tenemos que nuestro compacto es $K=\ov B_{N+1}(0)$ y $f\eta$ tiene soporte en $K$. Ahora, ¿qué es $D^\al(f\eta)$ en norma $L^\infty$? Esto es 
+  $$\sup_{x}|D^\al(f\eta)(x)|=\sup_{\nm{x}\leq N+1}|D^\al(f\eta)(x)|$$
+  y esta última cantidad es una suma de productos de derivadas de $f$ con derivadas de $\eta$ de orden menor o igual a $\al$. Las derivadas de $\eta$ está acotadas por lo que dicho supremo está acotado por una suma finita de seminormas $\rho_{\ga,N+1}$ para $|\ga|\leq m$. \red{finish}
+\end{ptcbp}
+
+\begin{Ex}
+  Si $F=\ov B_\eps(x_0)$ y tenemos $f$ tal que $\supp(f)\subseteq \ov{B}_\eps(x_0)^c$, entonces $(f,\del_{x_0})=f(x_0)=0$. Así el soporte de la delta de Dirac es $\supp(\del_{x_0})\subseteq\ov B_\eps(x_0)$. Pero esto vale para $\eps>0$ y así vemos que $\supp(\del_{x_0})=\set{x_0}$.
+\end{Ex}
+
+\begin{Def}
+  Diremos que una distribución $u\in\cD'$ coincide con la función $h$ en un abierto $U$ si 
+  $$(f,u)=\int f(x)h(x)\dd x,\ f\in\Coo_c(U).$$
+\end{Def}
+
+Esto quiere decir que hay distribuciones que \emph{se pueden ver como funciones}. Pero no todas las distribuciones cumplen esto. A este tipo de expresión se le conoce como una transformación integral. Cuando esto ocurre, el soporte de la distribución $u-h$ está contenido en $U^c$. Aquí $u-h=u-L_h=u-\int(\.)h(x)\dd x$. Como en $U$ la diferencia es cero, entonces su soporte está en $U^c$.
+
+\begin{Ex}
+  Sean $a,b\in\bR^d$ y $u=|x|^2+\dl_a+\dl_b$, entonces 
+  $$(f,u)=\int f(x)|x|^2\dd x+f(a)+f(b).$$
+  Si $U$ es un abierto tal que $a,b\not\in U$, entonces $u$ coincide con $|x|^2$ en el abierto $U$.
+\end{Ex}
+
+\begin{Th}
+  Si $u\in\cS'$ y $\vf\in\cS$, entonces $\vf\ast u\in\Coo$ y además 
+  $$(\vf\ast u)(x)=(\tau_x\tilde{\vf},u),\ x\in\bR^d.$$
+  También para $\al\in\bN^d$, existen $c_\al,k_\al$ tales que sus derivadas crecen a lo sumo polinomialmente:
+  $$|\del^\al(\vf\ast u)(x)|\leq c_\al(1+\nm{x})^{k_\al}.$$
+  Y más aún si $\supp(u)$ es compacto, entonces $\vf\ast u$ es de Schwartz.
+\end{Th}
+
+\begin{Def}
+  $h\ast u$ se define como $(f,h\ast u)=(\tilde{h}\ast f,u)$ con $\tilde{h}(x)=h(-x)$.
+\end{Def}
+
+Esta es la definición de convolución con distribución. Al final es pasarle el trabajo a la función. El teorema lo que dice es que la distribución convolución se puede ver como una función. Se hace la identificación con la función respecto a la cual se integra. 
+
+\begin{ptcbp}
+  Tomemos $f\in\cS$, por definición 
+  $$(f,\vf\ast u)=(\tilde{\vf}\ast f,u)=u\left(\int\tilde\vf(\.-y)f(y)\dd y\right)$$
+  y podemos ver ese $\tilde\vf$ como uan traslación. Entonces esto es 
+  $$u\left(\int\tau_y\tilde{\vf}(\.)f(y)\dd y\right)=\int u(\tau_y\tilde{\vf})f(y)$$
+  que se asemeja a \emph{operar con elementos de la base}. Este paso se justifica porque $u$ es continua y $\int$ converge en $\cS$. Esto se resumen en $L_{u(\tau_{\.}\tilde{\vf})}(f)$ y así $\vf\ast u$ corresponde con $u(\tau_{\.} \tilde{\vf})$.\par 
+  Para ver que es suave calculamos su derivada parcial
+  \begin{align*}
+    (\vf\ast u)(x+he_j)-(\vf\ast u)(x)&=\tau_{-he_j}(\vf\ast u)\dots\\
+    & \red{rip}
+  \end{align*}
+  Entonces $D_j(\vf\ast u)(x)=u(\tau_x(D_j\tilde{\vf}))=D_j\vf\ast u$. El mismo cálculo muestra que $\vf\ast u\in\Coo$ y que $D^\ga(\vf\ast u)=(D^\ga\vf)\ast u$ para $\ga\in\bN^d$. \par 
+  \red{calc violento derivada convolución}\par 
+
+A fin de cuentas $\ga$ está acotado en norma, entonces podemos ver que esto está acotado por
+$$\sum_{|\bt|\leq k}\sup_y(1+|x|^m+|y|^m)|D^{\al+\bt\tilde{\vf}(y)}|.$$
+Tomando supremo en $y$, el término $|y|^m|D^{\al+\bt\tilde{\vf}(y)}|$ está acotado por la seminorma $\rho_{(m,m,\dots,m),\al+\bt}(\tilde{\vf})$ que es una constante. Después de resolver los supremos y demás, esta cantidad termina acotada por $C(1+\nm{x}^m)$. Por lo tanto hay crecimiento polinomial como buscábamos.\par 
+\red{finish con Grafakos pag 147}
+\end{ptcbp}
+
+
 \section{Ínterin| Tarea}
 
 \begin{Ej}
