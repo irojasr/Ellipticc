@@ -504,9 +504,59 @@ La integral del núcleo de Poisson requiere de cambios a coordenadas polares mie
   $$\int\vf_\eps(x)\dd x=\int\frac{1}{\eps^d}\vf\left(\frac{x}{\eps}\right)\dd x\stackrel{y=\frac{x}{\eps}}{=}\int\vf(y)\dd y=1.$$
   Y con esta observación vemos que 
   $$f\ast\vf_\eps-f=\int f(x-y)\vf_\eps(y)\dd y-f(x)\int\vf_\eps(y)\dd y=\int(f(x-y)-f(x))\vf_\eps(y)\dd y,$$
-  donde buscamos estimar la norma $L^p$ de la última cantidad. Estamos ante una situación favorable pues $\vf_\eps$ está controlado ya que tiene integral 1, y como $f$ es ``bien portada'', la diferencia debería también tener un comportamiento razonable. 
+  donde buscamos estimar la norma $L^p$ de la última cantidad.\par 
+  Estamos ante una situación favorable pues $\vf_\eps$ está controlado ya que tiene integral 1, y como $f$ es ``bien portada'', la diferencia debería también tener un comportamiento razonable. La norma $L^p$ buscada es 
+  \begin{align*}
+    \nm{f\ast\vf_\eps-f}_p&=\left(\int\left|\int(f(x-y)-f(x))\vf_\eps(y)\dd y\right|^p\dd x\right)^{\frac 1p}\\
+    \colorbox{celesteUCR}{(\text{Minkowski})}&\leq \int\left(\int(|f(x-y)-f(x)||\vf_\eps(y)|)^p\dd x\right)^{\frac{1}{p}}\dd y\\
+    &=\int\left(\int |f(x-y)-f(x)|^p\dd x\right)^{\frac{1}{p}}|\vf_\eps(y)|\dd y\\
+    \textcolor{celesteUCR}{\left(\substack{ \eps^{-1}y\mapsto y\\
+    \dd y\mapsto \eps^{-d}\dd y}\right)}&=\int\left(\int |f(x-\eps y)-f(x)|^p\dd x\right)^{\frac{1}{p}}|\vf(y)|\dd y.
+  \end{align*}
+  Esta última expresión ya se ve mejor pues $\vf\in L^1$ y la otra integral se puede acotar por $2\nm{f}_p$. Es decir acotamos por un múltiplo de una función integrable. Si podemos ver que esto converge a cero, podemos aplicar el teorema de convergencia dominada.\par 
+  Si $f$ es continua y de soporte compacto, entonces es fácil ver que $\int |f(x-\eps y)-f(x)|^p\dd x$ tiende a cero. Al integrar sobre un compacto de medida finita obtenemos la cota de $\eps$ por la medida del soporte y por continuidad la diferencia tiende a cero. Luego por densidad en $L^p$\footnote{Una prueba de este hecho genera una función explícita a partir del lema de Urysohn.}, este procedimiento vale para $f\in L^p$.\par 
+  Concluimos, por el teorema de convergencia dominada, que $\nm{f\ast\vf_\eps-f}_p\to 0$ cuando $\eps\to 0$.
 \end{ptcbp}
 
+Pegamos esto con el teorema \ref{thm:tmaPendPara0208} para ver que la integral $\int\limits_{\bR^d}\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}w(\xi)\dd\xi$ va a converger a $f(x)$ en norma $L^p$. A manera de corolario entonces tenemos:
+
+\begin{Cor}
+Si $f,\Phi\in L^1$, y $\vf=\hat\Phi\in L^1$ con $\int\vf=1$, entonces
+$$\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}\Phi(\eps\xi)\dd\xi\xrightarrow[]{L^p}f(x),\ \eps\to 0.$$
+\end{Cor}
+
+Entonces con esto vemos que la integral de la transformada inversa no converge por si sola sino que requiere ayuda del $\Phi$-promedio. Al menos podemos recuperar de una forma la función original a partir de la transformada de Fourier.\par 
+El caso particular de este resultado es usar los núcleos de Gauss-Weierstrass y Poisson.
+
+\begin{Cor}
+  Si $f\in L^1$, entonces vale que:
+  \begin{itemize}
+    \item $\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}e^{-4\pi^2\eps\nm{\xi}^2}\dd\xi\xrightarrow[]{L^1}f(x)$ cuando $\eps\to 0$.
+    \item $\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}e^{-2\pi\eps\nm{\xi}}\dd\xi\xrightarrow[]{L^1}f(x)$ cuando $\eps\to 0$.
+  \end{itemize}
+\end{Cor}
+
+Hasta ahora hemos visto que la integral de la transformada de Fourier sólo tiene sentido cuando asumimos que $f$ es integrable, la integral que define la transformada inversa también tiene sentido cuando $f$ es integrable. Pero aún cuando tiene sentido no quiere decir que la integral resulte ser $f$. 
+
+\begin{Cor}
+  Suponga que ambas $f$ y $\hat{f}$ están en $L^1$, entonces vale
+  $$f(x)=\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}\dd\xi$$ %%Discrepancia con signo negativo en exp
+  casi por doquier.
+\end{Cor}
+
+\begin{ptcbp}
+  El corolario anterior garantiza que 
+  $$\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}e^{-4\pi^2\eps\nm{\xi}^2}\dd\xi\xrightarrow[]{L^1}f(x)$$
+  donde ahora el término $\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}e^{-4\pi^2\eps\nm{\xi}^2}$ está dominado. La primera exponencial tiene módulo 1 y la otra es una exponencial real con exponente negativo y así, está acotado por 1. Entonces todo está dominado por $\hat{f}$ que está en $L^1$.\par 
+  Por convergencia dominada, vale que 
+  $$\lim_{\eps\to0}\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}e^{-4\pi^2\eps\nm{\xi}^2}\dd\xi=\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}\dd\xi$$
+  en $L^1$ lo que garantiza convergencia casi por doquier.
+\end{ptcbp}
+%% Cont minuto 41
+
+\section{Día k+3| 20210209}
+\section{Día k+4| 20210210}
+\section{Día k+5| 20210211}
 
 \section{Ínterin| Tarea}
 
