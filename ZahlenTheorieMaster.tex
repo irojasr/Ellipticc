@@ -680,7 +680,11 @@ Tomando supremo en $y$, el término $|y|^m|D^{\al+\bt\tilde{\vf}(y)}|$ está aco
   También el término $(1+\nm{x})^N$ se puede expandir con el teorema del binomio como 
   $$(1+\nm{x})^N=\sum_{j=0}^N\binom{N}{j}\nm{x}^j\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}|x^\bt|.$$
   Ya con esto podemos ver que 
-  $$(1+\nm{x})^N|D^\al f(x)|\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}|x^\bt D^\al f(x)|\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}\sup_{\bR^d}|x^\bt D^\al f(x)|=C(\al,N)$$
+  \begin{align*}
+    (1+\nm{x})^N|D^\al f(x)|&\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}|x^\bt D^\al f(x)|\\
+    &\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}\sup_{\bR^d}|x^\bt D^\al f(x)|=C(\al,N)
+  \end{align*}
+ 
   que es lo que buscábamos.\par 
   Por otro lado, al haber resuelto el la dirección anterior, nos sentimos invitados a tomar $N=\nm\al$. De esta manera note que 
   $$|x^\al|\leq C(\al,N)\nm{x}^{\nm{\al}}\leq C(\al,N)(1+\nm{x})^{\nm{\al}}$$
@@ -693,8 +697,29 @@ Tomando supremo en $y$, el término $|y|^m|D^{\al+\bt\tilde{\vf}(y)}|$ está aco
   Muestre que si $f,g\in\cS(\bR^d)$, entonces $f\ast g\in\cS(\bR^d)$.
 \end{Ej}
 
+Previo a mostrar este resultado, precisamos un resultado.
+
+\begin{Lem}
+  Bajo la hipótesis del ejercicio, vale que
+  $$D^\al(f\ast g)=(D^\al f)\ast g=f\ast D^\al g.$$
+\end{Lem}
+
+\begin{ptcbp}
+  Veamos que $D^{e_j}(f\ast g)=(D^{e_j}f)\ast g$. Note que 
+  $$\frac{1}{h}(f(y+he_j)-f(y))-(\del_jf)(y)\to 0$$
+  conforme $h\to 0$. Además para cada $t$, hay una constante que acota la expresión. Integramos respecto a $g(x-y)\dd y$ y vemos que la expresión
+  $$\int\limits_{\bR^d}\bonj{\frac{1}{h}(f(y+he_j)-f(y))-(\del_jf)(y)}g(x-y)\dd y$$
+  también tiende a cero conforme $h\to 0$ después de aplicar el teorema de convergencia dominada. Dado esto, vale que $D^{e_j}(f\ast g)=(D^{e_j}f)\ast g$ y dado que $\al$ es un multi-índice, el caso general se sigue por iteración de este argumento tanto esta misma entrada como en las demás.
+\end{ptcbp}
+
 \begin{ptcbp}%Grafakos 107
-   
+  Aprovechamos tanto el lema como el ejercicio anterior. Note que 
+  $$\left|\int\limits_{\bR^d}f(x-y)g(y)\dd y\right|\leq C(N)\int\limits_{\bR^d}(1+|x-y|)^{-N}(1+|y|)^{-N-d-1}\dd y,$$
+  al estar $f,g$ en la clase de Schwartz según la equivalencia. Ahora como 
+  $$(1+|x-y|)^{-N}\leq (1+|y|)^N(1+|x|)^{-N},$$
+  podemos reemplazar en la desigualdad previa para ver que
+  $$|(f\ast g)(x)|\leq C(N)\int\limits_{\bR^d}(1+|y|)^N(1+|x|)^{-N}(1+|y|)^{-N-d-1}\dd y)=O((1+|x|)^{-N}).$$
+  Esto confirma que $f\ast g$ se comporta como $(1+\nm{x})^N$ en infinito. Para ver que sus derivadas también se comportan igual, utilizamos el lema anterior e intercambiamos con uno de los operandos. De esta manera corroboramos que todas las derivadas decaen en infinito y por tanto $f\ast g$ pertenece a la clase de Schwartz.
 \end{ptcbp}
 %%%%%%%%%%%% Contents end %%%%%%%%%%%%%%%%
 \ifx\nextra\undefined
