@@ -672,24 +672,30 @@ Tomando supremo en $y$, el término $|y|^m|D^{\al+\bt\tilde{\vf}(y)}|$ está aco
  Muestre que $f\in\cS(\bR^d)$ si y sólo si $f\in\Coo(\bR^d)$ y $|D^\al f(x)|\leq \frac{C(\al,N)}{(1+\nm{x})^N}$ para $\al\in\bN^d$ y $N\in\bN$.
 \end{Ej}
 
-\begin{ptcbp}%Folland 237
+\begin{ptcbp}%Folland 237, 2708452
   Suponga que $f$ está en la clase de Schwartz, entonces vale que 
   $$\sup_{\bR^d}|x^\al D^\bt f(x)|<\infty$$
-  para $\al,\bt\in\bN^d$. Note que 
-  \begin{align*}
-    |x^\al|^2&=x_1^{2\al_1}+x_2^{2\al_2}+\dots+x_d^{2\al_d}\\
-    &\leq C(\al,N)
-    &= C(\al,N)(1+\nm x)^N
-  \end{align*}
+  para $\al,\bt\in\bN^d$. Ahora observe que el término \emph{multinomial} cumple que 
+  $$|x^\al|\leq C(\al,N)\nm{x}^{\nm{\al}}\leq C(\al,N)\sum_{\nm{\bt}\leq\nm{\al}}|x^\bt|.$$
+  También el término $(1+\nm{x})^N$ se puede expandir con el teorema del binomio como 
+  $$(1+\nm{x})^N=\sum_{j=0}^N\binom{N}{j}\nm{x}^j\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}|x^\bt|.$$
+  Ya con esto podemos ver que 
+  $$(1+\nm{x})^N|D^\al f(x)|\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}|x^\bt D^\al f(x)|\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}\sup_{\bR^d}|x^\bt D^\al f(x)|=C(\al,N)$$
+  que es lo que buscábamos.\par 
+  Por otro lado, al haber resuelto el la dirección anterior, nos sentimos invitados a tomar $N=\nm\al$. De esta manera note que 
+  $$|x^\al|\leq C(\al,N)\nm{x}^{\nm{\al}}\leq C(\al,N)(1+\nm{x})^{\nm{\al}}$$
+  donde la última desigualdad se sigue de que el binomio contempla al término $\nm{x}^{\nm{\al}}$ junto con todas las potencias anteriores. De esta manera vea que 
+  $$|x^\al D^\bt f(x)|\leq C(\al,N)(1+\nm{x})^{\nm{\al}}|D^\bt f(x)|\leq C(\al,N)\tilde{C}(\bt,\nm{\al}).$$
+  Por tanto, tomando supremos sobre $x\in\bR^d$ vemos que $f\in\cS$ según nuestra definición original.
 \end{ptcbp}
 
 \begin{Ej}
   Muestre que si $f,g\in\cS(\bR^d)$, entonces $f\ast g\in\cS(\bR^d)$.
- \end{Ej}
+\end{Ej}
 
- \begin{ptcbp}%Grafakos 107
+\begin{ptcbp}%Grafakos 107
    
- \end{ptcbp}
+\end{ptcbp}
 %%%%%%%%%%%% Contents end %%%%%%%%%%%%%%%%
 \ifx\nextra\undefined
 \printindex
