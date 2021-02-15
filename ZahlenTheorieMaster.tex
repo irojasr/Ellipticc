@@ -319,18 +319,40 @@ De este resultado extraemos que la convolución hereda las propiedades más boni
   \red{finish}
 \end{ptcbp}
 
-\begin{Prop}
+\begin{Prop}\label{prop:PropiedadesTransformada}
   Para $f,g\in L^1$ vale que:
   \begin{enumerate}
     \item $\cF(f\ast g)=\cF(f)\cF(g)$.
-    \item $\cF(\tau_h f)(\xi)=e^{2\pi i\braket{h}{\xi}}\cF(f)(\xi)$. Es decir, traslación se convierte en modulación.
+    \item $\cF(\tau_h f)(\xi)=e^{-2\pi i\braket{h}{\xi}}\cF(f)(\xi)$. Es decir, traslación se convierte en modulación.
     \item Si $A\in O(d)$, el grupo ortogonal en $d$ dimensiones, entonces
     $$\cF(f(A\.))(\xi)=\cF(f(A\xi)).$$
-    \item Si $f_\la(x)=\frac{1}{\la^d}\left(\frac{x}{\la}\right)$ entonces $\cF(f_\la)(\xi)=\cF(f)(\la\xi)$.
-    \item $\cF\left(\pdv{f}{x_j}\right)(\xi)=2\pi i\xi_j\cF(f)(\xi)$, cuando $f_j\in L^1$. Y para el otro lado, $\cF(-2\pi ix_j f)(\xi)=\cF\left(\pdv{f}{\xi_j}\right)(\xi)$ cuando $x_jf\in L^1$.
+    \item Si $f_\la(x)=\frac{1}{\la^d}f\left(\frac{x}{\la}\right)$ entonces $\cF(f_\la)(\xi)=\cF(f)(\la\xi)$.
+    \item $\cF\left(\pdv{f}{x_j}\right)(\xi)=2\pi i\xi_j\cF(f)(\xi)$, cuando $f_j\in L^1$. Y para el otro lado, $\cF(-2\pi ix_j f)(\xi)=\pdv{\xi_j}\cF(f)(\xi)$ cuando $x_jf\in L^1$.
   \end{enumerate}
 \end{Prop}
 
+\begin{ptcbp}
+  Primero, la transformada de la convolución es 
+  $$\int\limits_{\bR^d}(f\ast g)(x)e^{-2\pi i\braket{x}{\xi}}\dd x=\int\limits_{\bR^d}\left(\int\limits_{\bR^d}f(x-y)g(y)\dd y\right)e^{-2\pi i\braket{x}{\xi}}\dd x.$$
+  Como $x=x-y+y$ separamos la exponencial por linealidad del producto escalar en $e^{-2\pi i\braket{x}{\xi}}=e^{-2\pi i\braket{x-y}{\xi}}e^{-2\pi i\braket{y}{\xi}}$. 
+  Ahora, separamos las integrales en 
+  $$\left(\int\limits_{\bR^d}f(x-y)e^{-2\pi i\braket{x-y}{\xi}}\dd x\right)\left(\int\limits_{\bR^d}g(y)e^{-2\pi i\braket{y}{\xi}}\dd y\right)=\cF(f)\cF(g).$$
+  Para el segundo inciso, la acción del operador de traslación sobre $f$ es $f(x)\mapsto f(x-h)$, entonces tenemos que
+  $$\cF(\tau_h f)(\xi)=\int\limits_{\bR^d}f(x-h)e^{-2\pi i\braket{x}{\xi}}\dd x.$$
+  Aplicando el cambio de variables $x\mapsto x+h$ llegamos a 
+  $$\int\limits_{\bR^d}f(x)e^{-2\pi i\braket{x+h}{\xi}}\dd x=e^{-2\pi i\braket{h}{\xi}}\int\limits_{\bR^d}f(x)e^{-2\pi i\braket{x}{\xi}}\dd x=e^{-2\pi i\braket{h}{\xi}}\cF(f)(\xi).$$
+  Tomemos $A\in O(d)$, entonces 
+  $$\cF(f(Ax))(\xi)=\int\limits_{\bR^d}f(Ax)e^{-2\pi i\braket{x}{\xi}}\dd x.$$
+  Mapeamos $x$ a $A^{-1}x$ que coincide con $A^\sT x$ y como $A$ es ortogonal, entonces $|\det A|=1$. Así la transformada Es
+  $$\int\limits_{\bR^d}f(x)e^{-2\pi i\braket{A^Tx}{\xi}}\dd x=\int\limits_{\bR^d}f(x)e^{-2\pi i\braket{x}{A\xi}}\dd x=\cF(f)(A\xi).$$
+  Tomamos ahora la transformada de la dilatación y vemos que 
+  $$\cF(f_\la)(\xi)=\int\limits_{\bR^d}\frac{1}{\la^d}f\left(\frac{x}{\la}\right)e^{-2\pi i\braket{A^Tx}{\xi}}\dd x.$$
+  Luego tomando el cambio de variables $x\mapsto \la x$, el término $\la^{-d}$ está listo para cancelar al determinante y así resulta en 
+  $$\int\limits_{\bR^d}f\left(x\right)e^{-2\pi i\braket{\la x}{\xi}}\dd x=\int\limits_{\bR^d}f\left(x\right)e^{-2\pi i\braket{x}{\la\xi}}\dd x\cF(f)(\la\xi).$$
+  %Para ver el apartado de las derivadas analizamos primero 
+  %$$\cF\left(\pdv{f}{x_j}\right)(\xi)=\int\limits_{\bR^d}f_j\left(x\right)e^{-2\pi i\braket{\la x}{\xi}}\dd x$$
+  \red{Ver \cite{Zygmund} pgs 385-386 o usar integración por partes} 
+\end{ptcbp}
 Note que a partir del último punto, podemos iterar con derivadas de orden superior cuando todo esté bien definido. Vale por ejemplo que
 $$\cF\left(\pdv[2]{f}{x_j}{x_k}\right)(\xi)=(2\pi i\xi_j)(2\pi i\xi_k)\cF(f)(\xi).$$
 Naturalmente nos preguntamos, 
@@ -668,28 +690,35 @@ Tomando supremo en $y$, el término $|y|^m|D^{\al+\bt\tilde{\vf}(y)}|$ está aco
   Probar prop 4 (rip, cual era esta)
   \end{Ej}
 
+  Ver \ref{prop:PropiedadesTransformada}
 \begin{Ej}
  Muestre que $f\in\cS(\bR^d)$ si y sólo si $f\in\Coo(\bR^d)$ y $|D^\al f(x)|\leq \frac{C(\al,N)}{(1+\nm{x})^N}$ para $\al\in\bN^d$ y $N\in\bN$.
 \end{Ej}
 
-\begin{ptcbp}%Folland 237, 2708452
+\begin{ptcbp}%Folland 237, 2708452 Coto sugirió revisar desigualdades 
   Suponga que $f$ está en la clase de Schwartz, entonces vale que 
   $$\sup_{\bR^d}|x^\al D^\bt f(x)|<\infty$$
   para $\al,\bt\in\bN^d$. Ahora observe que el término \emph{multinomial} cumple que 
-  $$|x^\al|\leq C(\al,N)\nm{x}^{\nm{\al}}\leq C(\al,N)\sum_{\nm{\bt}\leq\nm{\al}}|x^\bt|.$$
-  También el término $(1+\nm{x})^N$ se puede expandir con el teorema del binomio como 
-  $$(1+\nm{x})^N=\sum_{j=0}^N\binom{N}{j}\nm{x}^j\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}|x^\bt|.$$
+  $$|x^\al|\leq C(\al,d)\nm{x}^{\nm{\al}}\leq C(\al,d)\sum_{\nm{\bt}\leq\nm{\al}}|x^\bt|.$$
+  La primera desigualdad es quizás la más extraña dada nuestra falta de costumbre a trabajar con términos multinomiales. Es cuestión de escribir lo que está sucediendo y recordar la equivalencia de normas en $\bR^d$. Vea que
+  \begin{align*}
+    |x^\al|&=|x_1^{\al_1}x_2^{\al_2}\dots x_d^{\al_d}|=|x_1|^{|\al_1|}\dots|x_d|^{|\al_d|}\\
+    &\leq (|x_1|+\dots+|x_d|)^{|\al_1|+\dots+|\al_d|}\leq (c(d)\nm{x}_{\l^2})^{\nm{\al}_{\l^1}}\\
+    &=C(\al,d)\nm{x}^{\nm{\al}}.
+  \end{align*}
+  Observe ahora que un término como $(1+\nm{x})^N$ se puede expande con el teorema del binomio como 
+  $$(1+\nm{x})^N=\sum_{j=0}^N\binom{N}{j}\nm{x}^j\leq\sum_{j=0}^N\binom{N}{j}C(j,d)\sum_{\nm{\bt}\leq j}|x^\bt|.$$
   Ya con esto podemos ver que 
   \begin{align*}
-    (1+\nm{x})^N|D^\al f(x)|&\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}|x^\bt D^\al f(x)|\\
-    &\leq\sum_{j=0}^N\binom{N}{j}C(j,N)\sum_{\nm{\bt}\leq j}\sup_{\bR^d}|x^\bt D^\al f(x)|=C(\al,N)
+    (1+\nm{x})^N|D^\al f(x)|&\leq\sum_{j=0}^N\binom{N}{j}C(j,d)\sum_{\nm{\bt}\leq j}|x^\bt D^\al f(x)|\\
+    &\leq\sum_{j=0}^N\binom{N}{j}C(j,d)\sum_{\nm{\bt}\leq j}\sup_{\bR^d}|x^\bt D^\al f(x)|=C(\al,d)
   \end{align*}
  
   que es lo que buscábamos.\par 
   Por otro lado, al haber resuelto el la dirección anterior, nos sentimos invitados a tomar $N=\nm\al$. De esta manera note que 
-  $$|x^\al|\leq C(\al,N)\nm{x}^{\nm{\al}}\leq C(\al,N)(1+\nm{x})^{\nm{\al}}$$
+  $$|x^\al|\leq C(\al,d)\nm{x}^{\nm{\al}}\leq C(\al,d)(1+\nm{x})^{\nm{\al}}$$
   donde la última desigualdad se sigue de que el binomio contempla al término $\nm{x}^{\nm{\al}}$ junto con todas las potencias anteriores. De esta manera vea que 
-  $$|x^\al D^\bt f(x)|\leq C(\al,N)(1+\nm{x})^{\nm{\al}}|D^\bt f(x)|\leq C(\al,N)\tilde{C}(\bt,\nm{\al}).$$
+  $$|x^\al D^\bt f(x)|\leq C(\al,d)(1+\nm{x})^{\nm{\al}}|D^\bt f(x)|\leq C(\al,d)\tilde{C}(\bt,\nm{\al}).$$
   Por tanto, tomando supremos sobre $x\in\bR^d$ vemos que $f\in\cS$ según nuestra definición original.
 \end{ptcbp}
 
@@ -720,6 +749,25 @@ Previo a mostrar este resultado, precisamos un resultado.
   podemos reemplazar en la desigualdad previa para ver que
   $$|(f\ast g)(x)|\leq C(N)\int\limits_{\bR^d}(1+|y|)^N(1+|x|)^{-N}(1+|y|)^{-N-d-1}\dd y)=O((1+|x|)^{-N}).$$
   Esto confirma que $f\ast g$ se comporta como $(1+\nm{x})^N$ en infinito. Para ver que sus derivadas también se comportan igual, utilizamos el lema anterior e intercambiamos con uno de los operandos. De esta manera corroboramos que todas las derivadas decaen en infinito y por tanto $f\ast g$ pertenece a la clase de Schwartz.
+\end{ptcbp}
+
+\begin{Ej}
+  Sea $(f_n)\subseteq\cS$ tal que $f_n\to f$ en $\cS$. Muestre que $\hat{f}_n\to \hat{f}$ y $\check{f}_n\to\check{f}$ en $\cS$.
+\end{Ej}
+
+\begin{ptcbp}
+  Considerando $\rho_{\al,\bt}(\hat{f}_n-\hat{f})$, buscamos trabajar con el término $|x^\al D^\bt(\hat{f}_n-\hat{f})|$. Entonces cocinamos un poco la derivada aplicando propiedades de la transformada. Vale que 
+  $$
+    D^\bt(\hat{f}_n-\hat{f})=(-2\pi i)^{\nm{\bt}}\cF(x^\bt(f_n-f))
+  $$
+  y entonces agregando el $x^\al$ tenemos 
+  \begin{gather*}
+    (-2\pi i)^{\nm{\bt}}x^\al\cF(x^\bt(f_n-f))=\frac{(-2\pi i)^{\nm{\bt}}}{(2\pi i)^{\nm{\al}}}\cF(D^\al (x^\bt(f_n-f)))\\
+    \To|x^\al D^\bt(\hat{f}_n-\hat{f})|\leq \left|\frac{(-2\pi i)^{\nm{\bt}}}{(2\pi i)^{\nm{\al}}}\right||\cF(D^\al (x^\bt(f_n-f)))|\\
+    \leq \left|\frac{(-2\pi i)^{\nm{\bt}}}{(2\pi i)^{\nm{\al}}}\right|\nm{D^\al (x^\bt(f_n-f))}_{L^1}.
+  \end{gather*}
+  Como la multiplicación por polinomios y las derivadas son aplicaciones cerradas en $\cS$, son continuas por el teorema del gráfico cerrado. Concluimos que cuando $f_n-f\to 0$, entonces la última expresión también tiende a cero. Tomando supremos obtenemos lo pedido.\par 
+  Con la transformada inversa el trato es similar gracias al teorema de inversión de Fourier en $\cS$. Si $R$ es el operador de reflexión: $f(x)\mapsto f(-x)$, entonces vale $\cF^{-1}=\cF R$ y por tanto podemos usar un argumento similar al anterior.
 \end{ptcbp}
 %%%%%%%%%%%% Contents end %%%%%%%%%%%%%%%%
 \ifx\nextra\undefined
