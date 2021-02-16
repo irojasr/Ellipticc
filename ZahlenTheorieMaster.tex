@@ -592,12 +592,65 @@ Del resultado anterior se desprende que cuando la transformada es cero, $f$ es c
 
 Hemos hablado de convergencia en norma, pero ahora vamos a hablar de convergencia puntual. Esto porque vamos a eliminar la suposición de que $\hat{f}$ está en $L^1$ y vamos a usar herramientas distintas. Algunas de estas serán el teorema de diferenciación de Lebesgue, la fórmula de coordenadas polares en $\bR^d$ y la desigualdad de Hölder. 
 
-\begin{Th}[Diferenciación de Lebesgue]\label{thm:}
+\begin{Th}[Diferenciación de Lebesgue]\label{thm:LebesgueDiffThm}
   Si $f\in L^1_\loc$, entonces
   $$\frac{1}{m(B_r(0))}\int\limits_{B_r(0)}(f(x-y)-f(x))\dd y\to 0$$
   conforme $r\to 0$.
 \end{Th}
-%%Min 55
+
+Recuerde que $f$ es \term{localmente integrable} si integrable en cualquier compacto de $\bR^d$. Y el conjunto de puntos tales que la expresión anterior pero con valor absoluto
+
+$$\frac{1}{m(B_r(0))}\int\limits_{B_r(0)}|f(x-y)-f(x)|\dd y$$
+
+tiende a cero, se conoce como el \term{conjunto de Lebesgue} de $f$, $\cL_f$. Es sabido que $m(\cL_f^c)=0$. Anotamos $m(B_r(0))$ como $\al(d)r^d$ donde $\al(d)$ es $m(B_1(0))$, la medida de la bola unitaria en $d$ dimensiones.\par 
+Esto quiere decir que podemos reemplazar la medida de la bola por la cantidad $r^d$. Nos permitimos describir el conjunto de Lebesgue como
+$$\cL_f=\Set{x\in\bR^d\:\ \lim_{r\to 0}\frac{1}{r^d}\int\limits_{\nm{y}\leq r}|f(x-y)-f(x)|\dd y= 0.}$$
+
+\begin{Th}
+  Sea $\vf\in L^1$ y $\psi(x)=\esssup_{\nm{y}\geq\nm{x}}|\vf(y)|$. Si $\psi\in L^1$ y $f\in L^p$ para $1\leq p\leq \infty$, entonces 
+  $$\lim_{\eps\to 0}(f\ast \vf_\eps)(x)=f(x)\int\vf(y)\dd y$$
+  para $x\in\cL_f$. 
+\end{Th}
+
+Vea que $\psi$ decrece en función de la norma de $x$ pues conforme $\nm{x}$ crece, a la $y$ se le van agotando las opciones. Note que en particular $f\ast P_\eps$ y $f\ast W_\eps$ convergen a $f(x)$ casi por doquier pues al aplicar el teorema, la integral de $\vf$ en este caso sería 1.\par 
+La idea principal de este resultado es que $\psi$ es una función mucho más grande que $\vf$, entonces cuando está en $L^1$ hay convergencia casi por doquier ya que $x$ está en el conjunto de Lebesgue. A saber, los núcleos de Poisson y Gauss-Weierstrass cumplen la hipótesis de este teorema.\par 
+Previo a comenzar, hacemos un recorrido con coordenadas polares. Si 
+$$g(r)=\int\limits_{\nm{x}=1}|f(x-rt)-f(x)|\dd t,$$
+estamos integrando sobre una esfera de radio $r$. La fórmula de coordenadas polares es hacer esto pero variando el radio. Reescribimos la condición del conjunto de Lebesgue como
+$$r\leq \eta\To \frac{1}{r^d}\int_0^r s^{d-1}\int\limits_{\nm{x}=1}|f(x-st)-f(x)|\dd t\dd s<\dl$$
+que se obtiene después de aplicar Fubini y un cambio de variables. La condición anterior se escribe nuevamente como $\int_0^rs^{d-1}g(s)\dd s\leq \dl r^d$ y llamamos $G(r)$ a toda la integral. $G$ es una función absolutamente continua y diferenciable casi por doquier, su derivada es $G'(r)=r^{d-1}g(r)$.
+
+\begin{ptcbp}
+  Sea $x\in\cL_f$, entonces el correspondiente límite tiende a cero. Así sea $\dl>0$, existe $\eta>0$ tal que 
+  $$r\leq \eta\To\frac{1}{r^d}\int\limits_{\nm{y}\leq r}|f(x-y)-f(x)|\dd y<\dl.$$
+  Llamemos $a=\int\vf=\int\vf_\eps$ para $\eps>0$, y queremos ver que $|f\ast\vf_\eps(x)-f(x)a|$ tiende a cero. Podemos dividir esta cantidad en dos integrales de la siguiente manera
+  $$\left|\int(f(x-y)-f(x))\vf_\eps(y)\dd y\right|\leq \underbrace{\Bigl|\int\limits_{\nm{y}<\eta}\Bigr|}_{I_1}+\underbrace{\Bigl|\int\limits_{\nm{y}\geq\eta}\Bigr|}_{I_2}.$$
+  Queremos convertir estas cantidades en algo pequeño cuando $\eps$ es pequeño. Estimamos $I_1$ primero, para ello notamos que $\psi(x)$ es una función radial. Podemos decir $\psi_0(r)=\psi(x)$ cuando $\nm{x}=r$ y así $\psi_0$ decrece respecto a $r$. Vemos que la integral
+  $$\int\limits_{\frac{r}{2}\leq\nm{x}\leq r}\psi(x)\dd x$$
+  tiende a cero cuando $r\to 0$ porque $\psi$ es integrable. Y cuando $r\to\infty$, la integral es una cola de una integral de una función en $L^1$ y por tanto tiende a cero. Como $\psi$ es no negativa, entonces el mínimo valor de la función es el máximo en su dominio. Es decir
+  $$\int\limits_{\frac{r}{2}\leq\nm{x}\leq r}\psi(x)\dd x\geq\int\limits_{\frac{r}{2}\leq\nm{x}\leq r}\psi_0(r)\dd x=\psi_0(r)\om_d\left(r^d-\frac{r^d}{2^d}\right)=\psi_0(r)\om_dr^d\left(\frac{2^d-1}{2^d}\right)$$
+  y esta expresión de abajo tiende a cero. Como las potencias de 2 son constantes entonces se sigue que $r^d\psi_0(r)\to 0$ conforme $r\to0$ y $r\to\infty$. Además $r^d\psi_0(r)$ está acotado para $r>0$. Acotamos $I_1$ como
+  \begin{align*}
+    I_1\leq\int\limits_{\nm{y}\leq\eta}|f(x-y)-f(x)|\psi_\eps(y)\dd y=\int_0^\eta r^{d-1}g(r)\eps^{-d}\psi_0\left(\frac{r}{\eps}\right),
+  \end{align*}
+y ahí lo que acaba de pasar es que $\psi_\eps(y)=\frac{1}{\eps^d}\psi\left(\frac{y}{\eps}\right)$. Como $\psi$ es radial, es constante en cada esfera y entonces sale de la integral $\int_{\nm{x}=1}$ en la representación polar. La $g(r)$ que resulta es la integral nada más. 
+%Ver 1h 26 min.
+Esta integral se puede evaluar por partes como
+$$\int_0^\eta \underbrace{r^{d-1}g(r)}_{\textcolor{celesteUCR}{G'(r)}}\eps^{-d}\psi_0\left(\frac{r}{\eps}\right)\dd r=G(r)\eps^{-d}\psi_0\left(\frac{r}{\eps}\right)\eval_{0}^{\eta}-\int_0^\eta G(r)\dv{r}(\eps^{-d}\psi_0\left(\frac{r}{\eps}\right))\dd r$$
+y como $G(r)$ está acotado $\dl r^d$, la última cantidad está acotada por 
+$$\dl r^d\eps^{-d}\psi_0\left(\frac{r}{\eps}\right)\eval_{0}^{\eta}-\int_0^{\frac{\eta}{\eps}}G(\eps s)\eps^{-d}\psi_0'(s)\dd s.$$
+El lector cuidadoso notará que $r^d\eps^{-d}\psi_0\left(\frac{r}{\eps}\right)=\left(\frac{r}{\eps}\right)^{d}\psi_0\left(\frac{r}{\eps}\right)$ y esto, según lo discutido anteriormente, está acotado. También $G(\eps s)\leq \dl(\eps s)^d$ y por tanto acotamos con 
+$$\dl B-\int_0^{\frac{\eta}{\eps}}\dl s^d\psi_0'(s)\dd s=\dl\left(B-\int_0^{\frac{\eta}{\eps}}s^d\psi_0'(s)\dd s\right)\leq \dl\left(B-\int_0^{\infty}s^d\psi_0'(s)\dd s\right).$$
+Ahora, esta integral que queda la trabajamos por partes
+\begin{align*}
+-\int_0^{\infty}s^d\psi_0'(s)\dd s&=\overbrace{-s^d\psi_0(s)\eval_0^\infty}^{\textcolor{celesteUCR}{0}}+\int_0^\infty ds^{d-1}\psi_0(s)\dd s=d\int_0^\infty s^{d-1}\psi_0(s)\dd s\\
+&=d\int_0^\infty s^{d-1}\frac{1}{\sg(\del B_1(0))}\int\limits_{\nm{x}=1}\psi_0(s)\dd t\dd s\\
+&=d\int_0^\infty s^{d-1}\frac{1}{\sg(\del B_1(0))}\int\limits_{\nm{x}=1}\psi_0(st)\dd t\dd s\\
+&=\frac{d}{\sg(\del B_1(0))}\int_0^\infty s^{d-1}\int\limits_{\nm{x}=1}\psi_0(st)\dd t\dd s\\
+&=\frac{d}{\sg(\del B_1(0))}\int\limits_{\bR^d}\psi(x)\dd x=C.
+\end{align*}
+Esto se encarga de $I_1$ pues dado lo anterior $I_1\leq \dl(B+C)$. El primer término en la fórmula se anula por el razonamiento que hicimos al principio sobre la función $\psi$.\par Rápidamente, la tercera igual se sigue de la fórmula de coordenadas polares y la que está a continuación es cierta por que $\psi$ es constante en el radio. Ya la penúltima es la fórmula de coordenadas polares y la devolvemos a coordenadas rectangulares para obtener el resultado.
+\end{ptcbp}
 \section{Día k+3| 20210209}
 \section{Día k+4| 20210210}
 \section{Día k+5| 20210211}
@@ -769,6 +822,36 @@ Previo a mostrar este resultado, precisamos un resultado.
   Como la multiplicación por polinomios y las derivadas son aplicaciones cerradas en $\cS$, son continuas por el teorema del gráfico cerrado. Concluimos que cuando $f_n-f\to 0$, entonces la última expresión también tiende a cero. Tomando supremos obtenemos lo pedido.\par 
   Con la transformada inversa el trato es similar gracias al teorema de inversión de Fourier en $\cS$. Si $R$ es el operador de reflexión: $f(x)\mapsto f(-x)$, entonces vale $\cF^{-1}=\cF R$ y por tanto podemos usar un argumento similar al anterior.
 \end{ptcbp}
+
+\section{Día k+j| 20210215}
+
+\subsection{aaaa}
+
+\subsection{Una aplicación a EDP's}
+
+El Laplaciano de una de una distribución es 
+$$\Dl u=\dots$$
+Las soluciones de $\Dl u=0$ se conocen como \term{distribuciones armónicas}. 
+
+\begin{Cor}
+  Si $u\in\cS'$ es armónica, entonces $u$ es un polinomio.
+\end{Cor}
+
+\begin{ptcbp}
+  Si $\Dl u=0$ entonces 
+  $$\sum_{j=1}^n(-2\pi i)^2\xi_j^2\hat{u}=0\To -4\pi^2\nm{\xi}^2\hat{u}=0.$$
+  Como $\supp(\hat{u})=0$ entonces $\hat{u}=\sum c_\al D^\al \dl_0$. Calculando la transformada inversa obtenemos el polinomio.
+\end{ptcbp}
+
+\subsection{Operadores en $L^p$}
+
+defn op continuo y norma de operador.\par 
+En espacio de funciones, un operador es de tipo convolución si es de la foma $$Tf = f\ast g.$$
+Diremos que $T$ conmuta con traslaciones o es invariante bajo traslaciones si $T(\tau_yf)=\tau_y(f)$, $X$, $Y$ espacios de funciones medibles, cerrados bajo traslación. Los operadores de tipo convolución conmutan con traslaciones.
+
+\begin{Th}
+  Sean $1\leq p,q\leq \infty$ y suponga que $T\in\cL(L^p,L^q)$fp
+\end{Th}
 %%%%%%%%%%%% Contents end %%%%%%%%%%%%%%%%
 \ifx\nextra\undefined
 \printindex
