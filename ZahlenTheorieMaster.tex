@@ -652,6 +652,87 @@ Ahora, esta integral que queda la trabajamos por partes
 Esto se encarga de $I_1$ pues dado lo anterior $I_1\leq \dl(B+C)$. El primer término en la fórmula se anula por el razonamiento que hicimos al principio sobre la función $\psi$.\par Rápidamente, la tercera igual se sigue de la fórmula de coordenadas polares y la que está a continuación es cierta por que $\psi$ es constante en el radio. Ya la penúltima es la fórmula de coordenadas polares y la devolvemos a coordenadas rectangulares para obtener el resultado.
 \end{ptcbp}
 \section{Día k+3| 20210209}
+
+Continuamos con la prueba de la lección anterior. De momento teníamos que
+$$|f\ast \vf_\eps(x)-f(x)|\leq I_1+I_2$$
+donde $I_1\leq \dl C_1$ para $\eps\leq\eta$ donde $\eta$ sale del teorema \ref{thm:LebesgueDiffThm} de diferenciación de Lebesgue. Falta por acotar 
+$$I_2=\left|\int\limits_{\nm{y}\geq \eta}(f(x-y)-f(x))\vf_\eps(y)\dd y\right|$$
+y con esto, resumimos la prueba.
+
+\begin{ptcb}
+  La integral la $I_2$ la cambiamos a todo $\bR^d$ multiplicando por la indicadora $\ind(\nm{y}\geq\eta)=\chi$. Vale que
+  $$I_2\leq\abs{\int f(x-y)\chi(y)\psi_\eps(y)\dd y}+\abs{\int f(y)\chi(y)\psi_\eps(y)\dd y}$$
+  y aplicando la desigualdad de Hölder acotamos con 
+  $$\leq \nm{f}_p\nm{\chi\psi_\eps}_q+|f(x)|\nm{\chi\psi_\eps}_1.$$
+  Para encargarnos del segundo término vemos que
+  $$\nm{\chi\psi_\eps}_1=\int\limits_{\nm{y}\geq\eta}\psi_\eps(y)\dd y=\int\limits_{\nm{y}\geq\frac\eta\eps}\psi(y)\dd y\xrightarrow[]{\eps\to 0}0$$
+  pues el conjunto es el complemento de una bola que crece conforme $\eps$ se haga más pequeño. Entonces a final de cuentas esa cantidad es la cola de la integral de una función en $L^1$ que para $x$ fijo en el conjunto de Lebesgue hace que se cumpla.\par 
+  Para el primer término tenemos que 
+  $$\nm{\chi\psi_\eps}_q=\left(\int\chi\psi_\eps^q\right)^{\frac{1}{q}}=\left(\int(\chi\psi_\eps)^\frac{q}{p}\psi_\eps\right)^{\frac{1}{q}}$$
+  y acotamos el término con la potencia con su norma infinito de manera que 
+  $$\leq\left(\int\nm{\chi\psi_\eps}_{\infty}^\frac{q}{p}\psi_\eps\right)^{\frac{1}{q}}=\nm{\chi\psi_\eps}_\infty^{\frac{1}{p}}\nm{\psi_\eps}^\frac{1}{q}_1=\nm{\chi\psi_\eps}_\infty^{\frac{1}{p}}\nm{\psi}^\frac{1}{q}_1.$$
+  En este caso tenemos que 
+  $$\nm{\chi\psi_\eps}_\infty=\sup_x\chi(x)\psi_\eps(x)=\sup_{\nm{x}\geq\eta}\psi_\eps(x)=\sup_{\nm{x}\geq\eta}\frac{1}{\eps^d}\psi(\eps^{-1}x)=\frac{1}{\eps^d}\psi_0\left(\frac{\eta}{\eps}\right).$$
+  Recuerde que $\psi$ era una función radial decreciente, entonces el supremo se alcanza cuando $\nm{x}=\eta$ y por esto vale la última igualdad. Modificamos un poco la expresión para obtener
+  $$\eta^{-d}\left(\frac\eta\eps\right)^d\psi_0\left(\frac\eta\eps\right)\xrightarrow[]{\eps\to0}0$$
+  pues habíamos visto $r^d\psi_0(r)$ tiende a cero conforme $r\to 0$ ó $r\to\infty$. Por lo tanto $I_2$ también tiende a cero cuando $\eps\to 0$.\par 
+  En conclusión $|f\ast \vf_\eps(x)-f(x)|\leq \dl C_1$ cuando $\eps<\eta$ y $\eta$ sólo depende de $\vf$.
+\end{ptcb}
+
+Lo que hemos probado es la convergencia puntual de $f\ast\vf_\eps$. Ya habíamos probado la convergencia en $L^p$ y aquí lo que hicimos fue agregar una hipótesis sobre la función que ayuda a la sumabilidad. Nada más pedimos que un supremo sea integrable, y para el caso de los núcleos de Poisson y Gauss-Weierstrass se puede calcular dicho supremo esencial.\par 
+Como corolario a este resultado tenemos lo siguiente.
+
+\begin{Cor}
+  Sea $f\in L^1$ y $\hat{f}\geq 0$. Suponga que $f$ es continua en cero, entonces $\hat{f}\in L^1$ y vale $f(x)=\int\hat{f}(\xi)e^{2\pi i\braket{x}{\xi}}\dd\xi$ casi por doquier.
+\end{Cor}
+
+Anteriormente \red{agregar referencia} vimos que valía la fórmula de inversión cuando $\hat{f}$ era integrable. Aquí el requisito es que la transformada sea positiva. En esencia, aquí lo que ocurre es que cero es un punto de Lebesgue y gracias a esto aplicamos el teorema anterior.
+
+\begin{ptcbp}
+  Como $0\in\cL_f$ entonces 
+  $$\lim_{\eps\to0}\int\hat{f}(\xi)\underbrace{e^{2\pi i\eps\nm{\xi}}}_{\textcolor{celesteUCR}{\text{Poisson}}}\dd\xi=f(0).$$
+  Si $\hat{f}\geq 0$ entonces aplicamos Fatou pues
+  \begin{align*}
+    \int\hat{f}(\xi)\dd\xi&=\int\liminf_{\eps\to 0}\hat{f}(\xi)e^{2\pi i\eps\nm{\xi}}\dd\xi\\
+    \colorbox{celesteUCR}{(\text{Fatou})} &\leq\int\liminf_{\eps\to 0}\hat{f}(\xi)e^{2\pi i\eps\nm{\xi}}\dd\xi=f(0)<\infty.
+  \end{align*}
+  Por lo tanto $\hat{f}\in L^1$ y así vale la fórmula de inversión casi por doquier.
+\end{ptcbp}
+
+Aplicando a los casos particulares de los núcleos de Poisson y Gauss-Weierstrass obtenemos el siguiente corolario.
+
+\begin{Cor}
+  En virtud del resultado anterior vale que:
+  \begin{enumerate}
+    \item $\int W(\xi,a)e^{2\pi i\braket{x}{\xi}}\dd\xi=e^{-4\pi^2a\nm{x}^2}$ para $a\geq 0$.
+    \item $\int P(\xi,a)e^{2\pi i\braket{x}{\xi}}\dd\xi=e^{-2\pi a\nm{x}}$ para $a\geq 0$.
+  \end{enumerate}
+\end{Cor}
+
+Como los núcleos son positivos y continuos en cero vale el corolario anterior. No está demás recordar cuales son las transformadas de Fourier de los núcleos. Tenemos otro corolario más relacionado a los núcleos.
+
+\begin{Cor}[Propiedades de semigrupo]
+  Sean $a,b>0$, entonces vale que:
+  \begin{enumerate}
+    \item $W(\xi,a+b)=\int W(\xi-y,a)W(y,b)\dd y=(W(\.,a)\ast W(\.,b))(\xi)$.
+    \item $P(\xi,a+b)=\int P(\xi-y,a)P(y,b)\dd y=(P(\.,a)\ast P(\.,b))(\xi)$.
+  \end{enumerate}
+\end{Cor}
+
+\begin{ptcbp}
+  Las pruebas son totalmente análogas. Probamos sólo el primer inciso.
+  \begin{align*}
+    \cF(W(\.,a)\ast W(\.,b))(\xi)&=\cF(W(\xi,a))\cF(W(\xi,b))\\
+    &=e^{-4\pi^2a\nm{\xi}^2}e^{-4\pi^2b\nm{\xi}^2}=e^{-4\pi^2(a+b)\nm{\xi}^2}\\
+    &=\cF(W(\.,a+b))(\xi)
+  \end{align*}
+  Por unicidad de la transformada tenemos que las funciones son iguales casi por doquier. \red{revisar xq/ notación es distinta}
+\end{ptcbp}
+
+Basicamente tenemos una operación binaria con los núcleos que están indexados por un parámetro. Usualmente dichos parámetros satisface relaciones con operaciones razonables, en este caso, la convolución.
+
+%%Continue min 35
+
 \section{Día k+4| 20210210}
 \section{Día k+5| 20210211}
 
