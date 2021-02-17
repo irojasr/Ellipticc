@@ -729,10 +729,45 @@ Como los núcleos son positivos y continuos en cero vale el corolario anterior. 
   Por unicidad de la transformada tenemos que las funciones son iguales casi por doquier. \red{revisar xq/ notación es distinta}
 \end{ptcbp}
 
-Basicamente tenemos una operación binaria con los núcleos que están indexados por un parámetro. Usualmente dichos parámetros satisface relaciones con operaciones razonables, en este caso, la convolución.
+Basicamente tenemos una operación binaria con los núcleos que están indexados por un parámetro. Usualmente dichos parámetros satisface relaciones con operaciones razonables, en este caso, la convolución.\par 
 
-%%Continue min 35
+\subsection{La transformada de Fourier en $L^p$}
+Hasta ahora, cada vez que estamos calculando una transformada de Fourier, estamos tomando la función en $L^1$. Hemos probado que hay convergencia en $L^p$ y en ese caso $f\in L^1\cap L^p$. También se puede definir en la clase de Schwartz pero ese es un conjunto pequeño. En $L^2$ se define por medio de densidad pues $\cF$ es un operador acotado.\par 
+Ahora en $L^p$, no tenemos un operador acotado el cual extender por medio de densidad. Es un ejercicio clásico de teoría de la medida ver que $L^q\subseteq L^p$ cuando $q>p$ y estamos sobre un espacio de medida finita. Pero cuando la medida es infinita no tenemos relación.\par 
+La teoría de Fourier en $L^p$ da muchos problemas para trabajar, es un área de estudio activa. Uno de los métodos actuales es trabajar con sumabilidad de Bochner-Riesz y hay varios núcleos que dan convergencia puntual. Primero comenzamos con algo sencillo.\par 
+Consideremos $L^1+L^2$, podemos definir la transformada en ese espacio de una manera natural. Si $f+g\in L^1+L^2$ entonces la nueva transformada se define como
+$$\cF_{1,2}(f+g)=\cF_1(f)+\cF_2(g)$$
+y posteriormente omitimos los subíndices. Hay que ver que esta es una buena definición. ¿Qué pasa si tengo dos funciones que tienen la misma suma? Es decir, ¿qué pasa si $f_0\in L^1, g_0\in L^2$ cumplen que $f+g=f_0+g_0$? Pues en ese caso $f-f_0=g_0-g$ y así ambas diferencias están en $L^1\cap L^2$.\par 
+La definición de $\cF$ en ambos espacios coincide en la intersección. Esto quiere decir que la transformada de Fourier de ambas funciones también es igual. Llegamos a 
+\begin{align*}
+  \cF(f-f_0)=\cF(g_0-g)&  \To \hat{f}-\hat{f_0}=\hat{g_0}-\hat{g}\\
+  &\To \hat{f}+\hat g=\hat{f_0}+\hat{g_0}\\
+  &\To\cF(f+g)=\cF(f_0+g_0)
+\end{align*}
+y por tanto la transformada de Fourier en la suma está bien definida. Veamos un resultado clásico de teoría de la medida a continuación.
 
+\begin{Th}
+  Sea $p\in[1,2]$, entonces $L^1\cap L^2\subseteq L^p\subseteq L^1+L^2$.
+\end{Th}
+
+\begin{ptcbp}
+  Basicamente si $f\in L^p$ entonces
+  $$f\ind(|f|\geq 1)+f\ind(f\leq 1).$$
+  El exponente $p$ nos permite usar el criterio de comparacion y así ver que una de las dos está en $L^1$ y la otra en $L^2$
+\end{ptcbp}
+
+Con esto podemos definir $\cF$ en $L^p$ para $p\in [1,2]$ por lo menos, se resumen en lo siguiente. 
+
+\begin{Th}
+  Si $f\in L^1$ y $g\in L^p$ para $p\in[1,2]$, entonces $f\ast g\in L^p$ y 
+  $$\cF(f\ast g))(\xi)=\hat{f}(\xi)\hat{g}(\xi)$$
+  casi por doquier.
+\end{Th}
+
+Fubini y Hölder se utilizan para probar este resultado. Más adelante, por medio de dualidad, podremos definir la transformada en general.
+
+\subsection{Distribuciones}
+%%Cont Min 49
 \section{Día k+4| 20210210}
 \section{Día k+5| 20210211}
 
@@ -933,6 +968,8 @@ Diremos que $T$ conmuta con traslaciones o es invariante bajo traslaciones si $T
 \begin{Th}
   Sean $1\leq p,q\leq \infty$ y suponga que $T\in\cL(L^p,L^q)$fp
 \end{Th}
+
+\section{Día k+j+1| 20210216}
 %%%%%%%%%%%% Contents end %%%%%%%%%%%%%%%%
 \ifx\nextra\undefined
 \printindex
